@@ -1,0 +1,28 @@
+{
+  "name": "magic.home.wifi",
+  "version": "1.0.0",
+  "description": "Control LED strips through the Magic Home LED controller",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jghaanstra/magic.home.wifi.git"
+  },
+  "keywords": [
+    "magic",
+    "home",
+    "LED",
+    "controller"
+  ],
+  "author": "Jelger Haanstra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jghaanstra/magic.home.wifi/issues"
+  },
+  "homepage": "https://github.com/jghaanstra/magic.home.wifi#readme",
+  "dependencies": {
+    "magic-home": "^1.2.1"
+  }
+}

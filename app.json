@@ -1,0 +1,112 @@
+{
+	"id": "magic.home.wifi",
+	"sdk": 2,
+	"name": {
+		"en": "Magic Home WiFi LED controller",
+		"nl": "Magic Home WiFi LED controller"
+	},
+	"tags": {
+		"en": [ "magic home", "LED", "controller", "ESP8266" ],
+		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
+	},
+	"version": "1.0.0",
+	"compatibility": "1.x >=1.5.0",
+	"author": {
+		"name": "Jelger Haanstra",
+		"email": "homey@solidewebservices.com",
+		"website": "https://github.com/jghaanstra/magic.home.wifi"
+	},
+	"contributing": {
+		"donate": {
+			"paypal": {
+				"username": "jghaanstra"
+			}
+		}
+	},
+	"bugs": {
+		"url": "https://github.com/jghaanstra/magic.home.wifi/issues"
+	},
+  "homeyCommunityTopicId": 0,
+	"images": {
+		"large": "./assets/images/large.png",
+		"small": "./assets/images/small.png"
+	},
+	"category": "lights",
+	"description": {
+		"en": "Control LED strips through the Magic Home LED controller",
+		"nl": "Bestuur LED strips via de Magic Home LED controller"
+	},
+	"dependencies": {
+		"net": "*"
+	},
+	"drivers": [
+		{
+			"id": "magichome",
+			"name": {
+				"en": "Magic Home LED Controller",
+				"nl": "Magic Home LED controller"
+			},
+			"images": {
+				"large": "drivers/magichome/assets/images/large.jpg",
+				"small": "drivers/magichome/assets/images/small.jpg"
+			},
+			"class": "light",
+			"capabilities": [
+        "onoff",
+        "dim",
+        "light_temperature",
+        "light_hue",
+        "light_saturation",
+			],
+			"pair": [
+				{
+					"id": "start"
+				}
+			],
+			"settings": [
+				{
+					"type": "group",
+					"label": {
+						"en": "Magic Home settings",
+						"nl": "Magic Home instellingen"
+					},
+					"children": [
+						{
+							"id": "address",
+							"type": "text",
+							"value": "0.0.0.0",
+							"label": {
+								"en": "IP Address",
+								"nl": "IP adres"
+							}
+						},
+						{
+							"id": "port",
+							"type": "number",
+							"value": 502,
+							"step": 1,
+							"label": {
+								"en": "Port",
+								"nl": "Poort"
+							}
+						},
+						{
+							"id": "polling",
+							"type": "number",
+							"value": 5,
+							"step": 1,
+							"attr": {
+								"min": 2,
+								"max": 3600
+							},
+							"label": {
+								"en": "Polling",
+								"nl": "Polling"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
