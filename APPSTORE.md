@@ -12,7 +12,7 @@ The controller is also often used in complete WiFi LED strip kits sold on Aliexp
 Make sure your LED controller is connected to the same WiFi network as your Homey. Use the pair wizard to discover and pair your LED controller(s).
 
 ## Support topic
-For support please use the official support topic on the forum [here](https://community.athom.com/t/696).
+For support please use the official support topic on the forum [here](https://community.athom.com/t/1750).
 
 ## Changelog
 ### 2018-09-16 - v1.0.0
