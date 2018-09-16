@@ -6,14 +6,14 @@ The Magic Home LED Controller WiFi is sold under many rebranded names and is als
 * RGB
 * RGBW
 * RGBW with IR receiver
-The controller is also often used in complete WiFi LED strip kits sold on Aliexpress, but sold seperatly it should only cost about 7 to 8 US dollars.
+The controller is also often used in complete WiFi LED strip kits sold on Aliexpress. Sold seperatly it should only cost about 7 to 8 US dollars. All these variants and rebranded controllers should be supported but the Homey app might need to be update to enable the correct capabilities (RGB or RGBW(W)) for your device. Please contact me through the support topic for these kind of updates.
 
 ## Instructions
-...
+Make sure your LED controller is connected to the same WiFi network as your Homey. Use the pair wizard to discover and pair your LED controller(s).
 
 ## Support topic
 For support please use the official support topic on the forum [here](https://community.athom.com/t/696).
 
 ## Changelog
-### 2018-09-xx - v1.0.0
+### 2018-09-16 - v1.0.0
 * NEW: initial release

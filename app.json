@@ -53,60 +53,60 @@
 			"class": "light",
 			"capabilities": [
         "onoff",
-        "dim",
         "light_temperature",
         "light_hue",
+        "dim",
         "light_saturation",
+        "light_mode"
 			],
-			"pair": [
-				{
-					"id": "start"
-				}
-			],
-			"settings": [
-				{
-					"type": "group",
-					"label": {
-						"en": "Magic Home settings",
-						"nl": "Magic Home instellingen"
-					},
-					"children": [
-						{
-							"id": "address",
-							"type": "text",
-							"value": "0.0.0.0",
-							"label": {
-								"en": "IP Address",
-								"nl": "IP adres"
-							}
-						},
-						{
-							"id": "port",
-							"type": "number",
-							"value": 502,
-							"step": 1,
-							"label": {
-								"en": "Port",
-								"nl": "Poort"
-							}
-						},
-						{
-							"id": "polling",
-							"type": "number",
-							"value": 5,
-							"step": 1,
-							"attr": {
-								"min": 2,
-								"max": 3600
-							},
-							"label": {
-								"en": "Polling",
-								"nl": "Polling"
-							}
-						}
-					]
-				}
-			]
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_magichome"
+          }
+        },
+        {
+          "id": "add_magichome",
+          "template": "add_devices"
+        }
+      ]
 		}
-	]
+	],
+  "flow": {
+    "actions": [
+      {
+				"id": "colorAndWhite",
+				"title": {
+					"en": "Set color and white level",
+					"nl": "Stel kleur en wit niveau in"
+				},
+				"args": [
+          {
+						"name": "color",
+						"type": "color"
+          },
+          {
+						"name": "white",
+						"type": "range",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "%",
+            "labelDecimals": 0
+          },
+          {
+						"name": "device",
+						"type": "device",
+            "placeholder": {
+							"en": "Select Magic Home Controller",
+							"nl": "Selecteer Magic Home Controller"
+						},
+						"filter": "driver_id=magichome&capabilities=light_temperature"
+          }
+				]
+			}
+    ]
+  }
 }
