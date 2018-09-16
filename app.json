@@ -28,8 +28,8 @@
 	},
   "homeyCommunityTopicId": 1750,
 	"images": {
-		"large": "./assets/images/large.png",
-		"small": "./assets/images/small.png"
+		"large": "./assets/images/large.jpg",
+		"small": "./assets/images/small.jpg"
 	},
 	"category": "lights",
 	"description": {
