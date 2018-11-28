@@ -31,6 +31,21 @@ class MagicHomeApp extends Homey.App {
         });
         return Promise.resolve(true);
       })
+
+    new Homey.FlowCardAction('effect')
+      .register()
+      .registerRunListener((args, state) => {
+        var light = new MagicHomeControl(args.device.getSetting('address'), characteristics);
+
+        light.setPattern(args.effect, args.speed, function(err, result) {
+        	if (err) {
+            return Promise.resolve(false);
+          } else {
+            return Promise.resolve(true);
+          }
+        });
+        return Promise.resolve(true);
+      })
   }
 
 }

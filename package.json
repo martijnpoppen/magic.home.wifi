@@ -1,6 +1,6 @@
 {
   "name": "magic.home.wifi",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Control LED strips through the Magic Home LED controller",
   "main": "app.js",
   "scripts": {

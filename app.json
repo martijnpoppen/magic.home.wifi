@@ -1,6 +1,7 @@
 {
 	"id": "magic.home.wifi",
 	"sdk": 2,
+  "brandColor": "#219ddb",
 	"name": {
 		"en": "Magic Home WiFi LED controller",
 		"nl": "Magic Home WiFi LED controller"
@@ -9,8 +10,8 @@
 		"en": [ "magic home", "LED", "controller", "ESP8266" ],
 		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
 	},
-	"version": "1.0.0",
-	"compatibility": "1.x >=1.5.0",
+	"version": "1.1.0",
+	"compatibility": ">=1.5.12",
 	"author": {
 		"name": "Jelger Haanstra",
 		"email": "homey@solidewebservices.com",
@@ -104,6 +105,181 @@
 							"nl": "Selecteer Magic Home Controller"
 						},
 						"filter": "driver_id=magichome&capabilities=light_temperature"
+          }
+				]
+			},
+      {
+				"id": "effect",
+				"title": {
+					"en": "Set Effect",
+					"nl": "Stel effect in"
+				},
+				"args": [
+          {
+						"name": "effect",
+						"type": "dropdown",
+            "values": [
+              {
+                "id": "seven_color_cross_fade",
+                "label": {
+                  "en": "Seven Color Cross Fade",
+                  "nl": "Seven Color Cross Fade"
+                }
+              },
+              {
+                "id": "red_gradual_change",
+                "label": {
+                  "en": "Red Gradual Change",
+                  "nl": "Red Gradual Change"
+                }
+              },
+              {
+                "id": "green_gradual_change",
+                "label": {
+                  "en": "Green Gradual Change",
+                  "nl": "Green Gradual Change"
+                }
+              },
+              {
+                "id": "blue_gradual_change",
+                "label": {
+                  "en": "Blue Gradual Change",
+                  "nl": "Blue Gradual Change"
+                }
+              },
+              {
+                "id": "yellow_gradual_change",
+                "label": {
+                  "en": "Yellow Gradual Change",
+                  "nl": "Yellow Gradual Change"
+                }
+              },
+              {
+                "id": "cyan_gradual_change",
+                "label": {
+                  "en": "Cyan Gradual Change",
+                  "nl": "Cyan Gradual Change"
+                }
+              },
+              {
+                "id": "purple_gradual_change",
+                "label": {
+                  "en": "Purple Gradual Change",
+                  "nl": "Purple Gradual Change"
+                }
+              },
+              {
+                "id": "white_gradual_change",
+                "label": {
+                  "en": "White Gradual Change",
+                  "nl": "White Gradual Change"
+                }
+              },
+              {
+                "id": "red_green_cross_fade",
+                "label": {
+                  "en": "Red Green Cross Fade",
+                  "nl": "Red Green Cross Fade"
+                }
+              },
+              {
+                "id": "red_blue_cross_fade",
+                "label": {
+                  "en": "Red Blue Cross Fade",
+                  "nl": "Red Blue Cross Fade"
+                }
+              },
+              {
+                "id": "green_blue_cross_fade",
+                "label": {
+                  "en": "Green Blue Cross Fade",
+                  "nl": "Green Blue Cross Fade"
+                }
+              },
+              {
+                "id": "seven_color_strobe_flash",
+                "label": {
+                  "en": "Seven Color Strobe Flash",
+                  "nl": "Seven Color Strobe Flash"
+                }
+              },
+              {
+                "id": "red_strobe_flash",
+                "label": {
+                  "en": "Red Strobe Flash",
+                  "nl": "Red Strobe Flash"
+                }
+              },
+              {
+                "id": "green_strobe_flash",
+                "label": {
+                  "en": "Green Strobe Flash",
+                  "nl": "Green Strobe Flash"
+                }
+              },
+              {
+                "id": "blue_strobe_flash",
+                "label": {
+                  "en": "Blue Strobe Flash",
+                  "nl": "Blue Strobe Flash"
+                }
+              },
+              {
+                "id": "yellow_strobe_flash",
+                "label": {
+                  "en": "Yellow Strobe Flash",
+                  "nl": "Yellow Strobe Flash"
+                }
+              },
+              {
+                "id": "cyan_strobe_flash",
+                "label": {
+                  "en": "Cyan Strobe Flash",
+                  "nl": "Cyan Strobe Flash"
+                }
+              },
+              {
+                "id": "purple_strobe_flash",
+                "label": {
+                  "en": "Purple Strobe Flash",
+                  "nl": "Purple Strobe Flash"
+                }
+              },
+              {
+                "id": "white_strobe_flash",
+                "label": {
+                  "en": "White Strobe Flash",
+                  "nl": "White Strobe Flash"
+                }
+              },
+              {
+                "id": "seven_color_jumping",
+                "label": {
+                  "en": "Seven Color Jumping",
+                  "nl": "Seven Color Jumping"
+                }
+              }
+            ]
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "Speed (0 - 100)",
+              "nl": "Snelheid (0 - 100)"
+            }
+          },
+          {
+						"name": "device",
+						"type": "device",
+            "placeholder": {
+							"en": "Select Magic Home Controller",
+							"nl": "Selecteer Magic Home Controller"
+						},
+						"filter": "driver_id=magichome"
           }
 				]
 			}
