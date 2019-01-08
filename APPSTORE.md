@@ -16,5 +16,5 @@ Make sure your LED controller is connected to the same WiFi network as your Home
 For support please use the official support topic on the forum [here](https://community.athom.com/t/1750).
 
 ## Changelog
-### 2018-11-28 - v1.1.0
-* NEW: added action card for built in effects
+### 2019-01-08 - v1.1.1
+* FIX: fix for RGBWW controllers

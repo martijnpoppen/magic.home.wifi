@@ -22,6 +22,7 @@ class MagicHomeDriver extends Homey.Driver {
           var name = 'RBGW controller ('+ result[i].address +')';
         } else {
           var name = 'RBGWW controller ('+ result[i].address +')';
+          result[i].model = 'other';
         }
 
         devices.push({
@@ -33,7 +34,7 @@ class MagicHomeDriver extends Homey.Driver {
             address: result[i].address,
             model: result[i].model
           },
-          capabilities: typeCapabilityMap[result[i].model] || typeCapabilityMap['other'],
+          capabilities: typeCapabilityMap[result[i].model],
         });
       }
       callback(null, devices);
