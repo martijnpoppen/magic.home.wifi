@@ -17,11 +17,11 @@ class MagicHomeDriver extends Homey.Driver {
       let devices = [];
       for (let i in result) {
         if (result[i].model == 'AK001-ZJ100') {
-          var name = 'RBG controller ('+ result[i].address +')';
+          var name = 'RGB controller ('+ result[i].address +')';
         } else if (result[i].model == 'AK001-ZJ200') {
-          var name = 'RBGW controller ('+ result[i].address +')';
+          var name = 'RGBW controller ('+ result[i].address +')';
         } else {
-          var name = 'RBGWW controller ('+ result[i].address +')';
+          var name = 'RGBWW controller ('+ result[i].address +')';
           result[i].model = 'other';
         }
 
