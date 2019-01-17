@@ -70,8 +70,6 @@ class MagicHomeDevice extends Homey.Device {
   }
 
   onCapabilityHueSaturation(valueObj, optsObj) {
-    console.log('change in hue/saturation');
-    console.log(valueObj);
     if (typeof valueObj.light_hue !== 'undefined') {
       var hue_value = valueObj.light_hue;
     } else {
@@ -97,9 +95,8 @@ class MagicHomeDevice extends Homey.Device {
   }
 
   onCapabilityLightTemperature(value, opts, callback) {
-    console.log('change in temperature');
     let id = this.getData().id;
-    let level = value * 100;
+    let level = Number(this.denormalize(value, 0, 255));
     devices[id].light.setWarmWhite(level, (err, success) => {
       if (err) {
         this.log(err);
@@ -119,12 +116,11 @@ class MagicHomeDevice extends Homey.Device {
 
       devices[id].light.queryState((err, result) => {
         if (result) {
-          console.log(result);
           let color = tinycolor({ r: result.color.red, g: result.color.green, b: result.color.blue });
           let hsv = color.toHsv();
           let hue = Number((hsv.h / 360).toFixed(2));
           let brightness = Number(hsv.v.toFixed(2));
-          let light_temperature = Number((result.warm_white_percent / 100).toFixed(2));
+          let light_temperature = Number(this.normalize(result.warm_white, 0, 255));
 
           var state = result.on;
           if (result.mode === 'color') {
