@@ -16,5 +16,5 @@ Make sure your LED controller is connected to the same WiFi network as your Home
 For support please use the official support topic on the forum [here](https://community.athom.com/t/1750).
 
 ## Changelog
-### 2019-01-17 - v1.1.1
-* FIX: better error handling on connection issues to avoid the app from crashing
+### 2019-01-22 - v1.1.2
+* FIX: more better error handling on connection issues to avoid the app from crashing
