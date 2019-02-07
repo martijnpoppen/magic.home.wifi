@@ -14,95 +14,90 @@ const characteristics = {
 class MagicHomeDevice extends Homey.Device {
 
   onInit() {
-    this.registerCapabilityListener('onoff', this.onCapabilityOnoff.bind(this));
-    this.registerMultipleCapabilityListener(['light_hue', 'light_saturation'], this.onCapabilityHueSaturation.bind(this), 500);
-    this.registerCapabilityListener('dim', this.onCapabilityDim.bind(this));
-    this.registerCapabilityListener('light_temperature', this.onCapabilityLightTemperature.bind(this));
-
     let id = this.getData().id;
     devices[id] = {};
     devices[id].data = this.getData();
     devices[id].light = new MagicHomeControl(this.getSetting('address'), characteristics);
 
     this.pollDevice(id);
+
+    // LISTENERS FOR UPDATING CAPABILITIES
+    this.registerCapabilityListener('onoff', (value, opts) => {
+      let id = this.getData().id;
+
+      if (value) {
+        devices[id].light.turnOn(function(err, success) {
+          if (err) {
+            return Promise.reject(err);
+          } else {
+            return Promise.resolve();
+          }
+        });
+      } else {
+        devices[id].light.turnOff(function(err, success) {
+        	if (err) {
+            return Promise.reject(err);
+          } else {
+            return Promise.resolve();
+          }
+        });
+      }
+    });
+
+    this.registerMultipleCapabilityListener(['light_hue', 'light_saturation' ], ( valueObj, optsObj ) => {
+      if (typeof valueObj.light_hue !== 'undefined') {
+        var hue_value = valueObj.light_hue;
+      } else {
+        var hue_value = this.getCapabilityValue('light_hue');
+      }
+
+      if (typeof valueObj.light_saturation !== 'undefined') {
+        var saturation_value = valueObj.light_saturation;
+      } else {
+        var saturation_value = this.getCapabilityValue('light_saturation');
+      }
+
+      let id = this.getData().id;
+      let color = tinycolor.fromRatio({ h: hue_value, s: saturation_value, v: this.getCapabilityValue('dim') });
+      let rgbcolor = color.toRgb();
+      devices[id].light.setColor(Number(rgbcolor.r),Number(rgbcolor.g),Number(rgbcolor.b), (err, success) => {
+        if (err) {
+          return Promise.reject(err);
+        } else {
+          return Promise.resolve();
+        }
+      });
+    }, 500);
+
+    this.registerCapabilityListener('dim', (value, opts) => {
+      let id = this.getData().id;
+      let hsv = tinycolor.fromRatio({h: this.getCapabilityValue('light_hue'), s: this.getCapabilityValue('light_saturation'), v: value});
+      let rgb = hsv.toRgb();
+      devices[id].light.setColor(Number(rgb.r),Number(rgb.g),Number(rgb.b), (err, success) => {
+        if (err) {
+          return Promise.reject(err);
+        } else {
+          return Promise.resolve();
+        }
+      });
+    });
+
+    this.registerCapabilityListener('light_temperature', (value, opts) => {
+      let id = this.getData().id;
+      let level = Number(this.denormalize(value, 0, 255));
+      devices[id].light.setWarmWhite(level, (err, success) => {
+        if (err) {
+          return Promise.reject(err);
+        } else {
+          return Promise.resolve();
+        }
+      });
+    });
+
   }
 
   onDeleted() {
     clearInterval(this.pollingInterval);
-  }
-
-  // LISTENERS FOR UPDATING CAPABILITIES
-  onCapabilityOnoff(value, opts, callback) {
-    let id = this.getData().id;
-
-    if (value) {
-      devices[id].light.turnOn(function(err, success) {
-        if (err) {
-          callback(err, null);
-        } else {
-          callback(null, success);
-        }
-      });
-    } else {
-      devices[id].light.turnOff(function(err, success) {
-      	if (err) {
-          callback(err, null);
-        } else {
-          callback(null, success);
-        }
-      });
-    }
-  }
-
-  onCapabilityDim(value, opts, callback) {
-    let id = this.getData().id;
-    let hsv = tinycolor.fromRatio({h: this.getCapabilityValue('light_hue'), s: this.getCapabilityValue('light_saturation'), v: value});
-    let rgb = hsv.toRgb();
-
-    devices[id].light.setColor(Number(rgb.r),Number(rgb.g),Number(rgb.b), (err, success) => {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, true);
-      }
-    });
-    callback(null, true);
-  }
-
-  onCapabilityHueSaturation(valueObj, optsObj) {
-    if (typeof valueObj.light_hue !== 'undefined') {
-      var hue_value = valueObj.light_hue;
-    } else {
-      var hue_value = this.getCapabilityValue('light_hue');
-    }
-
-    if (typeof valueObj.light_saturation !== 'undefined') {
-      var saturation_value = valueObj.light_saturation;
-    } else {
-      var saturation_value = this.getCapabilityValue('light_saturation');
-    }
-
-    let id = this.getData().id;
-    let color = tinycolor.fromRatio({ h: hue_value, s: saturation_value, v: this.getCapabilityValue('dim') });
-    let rgbcolor = color.toRgb();
-
-    devices[id].light.setColor(Number(rgbcolor.r),Number(rgbcolor.g),Number(rgbcolor.b), (err, success) => {
-      if (err) {
-        this.log(err);
-      }
-    });
-    return Promise.resolve();
-  }
-
-  onCapabilityLightTemperature(value, opts, callback) {
-    let id = this.getData().id;
-    let level = Number(this.denormalize(value, 0, 255));
-    devices[id].light.setWarmWhite(level, (err, success) => {
-      if (err) {
-        this.log(err);
-      }
-    });
-    return Promise.resolve();
   }
 
   // HELPER FUNCTIONS
