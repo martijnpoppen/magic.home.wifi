@@ -1,8 +1,8 @@
 "use strict";
 
 const Homey = require('homey');
-const MagicHomeDiscovery = require('magic-home').Discovery;
-const discovery = new MagicHomeDiscovery();
+const { Discovery } = require('magic-home');
+const discovery = new Discovery();
 
 const typeCapabilityMap = {
 	'AK001-ZJ100' : [ 'onoff', 'dim', 'light_hue', 'light_saturation' ],
@@ -13,15 +13,15 @@ const typeCapabilityMap = {
 class MagicHomeDriver extends Homey.Driver {
 
   onPairListDevices (data, callback) {
-    discovery.scan(3000, function(err, result) {
+    discovery.scan(3000).then(result => {
       let devices = [];
       for (let i in result) {
         if (result[i].model == 'AK001-ZJ100') {
-          var name = 'RGB controller ('+ result[i].address +')';
+          var name = 'RGB controller '+ result[i].model +' ('+ result[i].address +')';
         } else if (result[i].model == 'AK001-ZJ200') {
-          var name = 'RGBW controller ('+ result[i].address +')';
+          var name = 'RGBW controller '+ result[i].model +' ('+ result[i].address +')';
         } else {
-          var name = 'RGBWW controller ('+ result[i].address +')';
+          var name = 'RGBWW controller '+ result[i].model +' ('+ result[i].address +')';
           result[i].model = 'other';
         }
 
@@ -38,8 +38,10 @@ class MagicHomeDriver extends Homey.Driver {
         });
       }
       callback(null, devices);
+    })
+    .catch((err) => {
+      callback(err, null);
     });
-
   }
 
 }

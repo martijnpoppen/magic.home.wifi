@@ -1,7 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const MagicHomeControl = require('magic-home').Control;
+const { Control } = require('magic-home');
 const tinycolor = require("tinycolor2");
 const devices = {};
 const characteristics = {
@@ -17,7 +17,7 @@ class MagicHomeDevice extends Homey.Device {
     let id = this.getData().id;
     devices[id] = {};
     devices[id].data = this.getData();
-    devices[id].light = new MagicHomeControl(this.getSetting('address'), characteristics);
+    devices[id].light = new Control(this.getSetting('address'), characteristics);
 
     this.pollDevice(id);
 
@@ -26,21 +26,9 @@ class MagicHomeDevice extends Homey.Device {
       let id = this.getData().id;
 
       if (value) {
-        devices[id].light.turnOn(function(err, success) {
-          if (err) {
-            return Promise.reject(err);
-          } else {
-            return Promise.resolve();
-          }
-        });
+        return devices[id].light.setPower(true);
       } else {
-        devices[id].light.turnOff(function(err, success) {
-        	if (err) {
-            return Promise.reject(err);
-          } else {
-            return Promise.resolve();
-          }
-        });
+        return devices[id].light.setPower(false);
       }
     });
 
@@ -60,38 +48,20 @@ class MagicHomeDevice extends Homey.Device {
       let id = this.getData().id;
       let color = tinycolor.fromRatio({ h: hue_value, s: saturation_value, v: this.getCapabilityValue('dim') });
       let rgbcolor = color.toRgb();
-      devices[id].light.setColor(Number(rgbcolor.r),Number(rgbcolor.g),Number(rgbcolor.b), (err, success) => {
-        if (err) {
-          return Promise.reject(err);
-        } else {
-          return Promise.resolve();
-        }
-      });
+      return devices[id].light.setColor(Number(rgbcolor.r),Number(rgbcolor.g),Number(rgbcolor.b));
     }, 500);
 
     this.registerCapabilityListener('dim', (value, opts) => {
       let id = this.getData().id;
       let hsv = tinycolor.fromRatio({h: this.getCapabilityValue('light_hue'), s: this.getCapabilityValue('light_saturation'), v: value});
       let rgb = hsv.toRgb();
-      devices[id].light.setColor(Number(rgb.r),Number(rgb.g),Number(rgb.b), (err, success) => {
-        if (err) {
-          return Promise.reject(err);
-        } else {
-          return Promise.resolve();
-        }
-      });
+      return devices[id].light.setColor(Number(rgb.r),Number(rgb.g),Number(rgb.b));
     });
 
     this.registerCapabilityListener('light_temperature', (value, opts) => {
       let id = this.getData().id;
       let level = Number(this.denormalize(value, 0, 255));
-      devices[id].light.setWarmWhite(level, (err, success) => {
-        if (err) {
-          return Promise.reject(err);
-        } else {
-          return Promise.resolve();
-        }
-      });
+      return devices[id].light.setWarmWhite(level);
     });
 
   }
@@ -109,56 +79,54 @@ class MagicHomeDevice extends Homey.Device {
 
     this.pollingInterval = setInterval(() => {
 
-      devices[id].light.queryState((err, result) => {
-        if (result) {
-          let color = tinycolor({ r: result.color.red, g: result.color.green, b: result.color.blue });
-          let hsv = color.toHsv();
-          let hue = Number((hsv.h / 360).toFixed(2));
-          let brightness = Number(hsv.v.toFixed(2));
-          let light_temperature = Number(this.normalize(result.warm_white, 0, 255));
+      devices[id].light.queryState().then(result => {
+        let color = tinycolor({ r: result.color.red, g: result.color.green, b: result.color.blue });
+        let hsv = color.toHsv();
+        let hue = Number((hsv.h / 360).toFixed(2));
+        let brightness = Number(hsv.v.toFixed(2));
+        let light_temperature = Number(this.normalize(result.warm_white, 0, 255));
 
-          var state = result.on;
-          if (result.mode === 'color') {
-            var light_mode = 'color';
-          } else {
-            var light_mode = 'temperature';
-          }
-
-          // capability onoff
-          if (state != device.getCapabilityValue('onoff')) {
-            device.setCapabilityValue('onoff', state);
-          }
-
-          // capability dim
-          if (brightness != device.getCapabilityValue('dim')) {
-            device.setCapabilityValue('dim', brightness);
-          }
-
-          // capability light_hue
-          if (hue != device.getCapabilityValue('light_hue')) {
-            device.setCapabilityValue('light_hue', hue);
-          }
-
-          // capability light_saturation
-          if (hsv.s != device.getCapabilityValue('light_saturation')) {
-            device.setCapabilityValue('light_saturation', hsv.s);
-          }
-
-          // capability light_temperature
-          if (light_temperature != device.getCapabilityValue('light_temperature')) {
-            device.setCapabilityValue('light_temperature', light_temperature);
-          }
-
-          // capability light_mode
-          if (light_mode != device.getCapabilityValue('light_mode')) {
-            device.setCapabilityValue('light_mode', light_mode);
-          }
-
-        } else if (err) {
-          this.log(err);
-          device.setUnavailable(Homey.__('Unreachable'));
-          this.pingDevice(id);
+        var state = result.on;
+        if (result.mode === 'color') {
+          var light_mode = 'color';
+        } else {
+          var light_mode = 'temperature';
         }
+
+        // capability onoff
+        if (state != device.getCapabilityValue('onoff')) {
+          device.setCapabilityValue('onoff', state);
+        }
+
+        // capability dim
+        if (brightness != device.getCapabilityValue('dim')) {
+          device.setCapabilityValue('dim', brightness);
+        }
+
+        // capability light_hue
+        if (hue != device.getCapabilityValue('light_hue')) {
+          device.setCapabilityValue('light_hue', hue);
+        }
+
+        // capability light_saturation
+        if (hsv.s != device.getCapabilityValue('light_saturation')) {
+          device.setCapabilityValue('light_saturation', hsv.s);
+        }
+
+        // capability light_temperature
+        if (light_temperature != device.getCapabilityValue('light_temperature')) {
+          device.setCapabilityValue('light_temperature', light_temperature);
+        }
+
+        // capability light_mode
+        if (light_mode != device.getCapabilityValue('light_mode')) {
+          device.setCapabilityValue('light_mode', light_mode);
+        }
+      })
+      .catch((err) => {
+        this.log(err);
+        device.setUnavailable(Homey.__('Unreachable'));
+        this.pingDevice(id);
       });
 
     }, 10000);
@@ -171,14 +139,13 @@ class MagicHomeDevice extends Homey.Device {
     let device = Homey.ManagerDrivers.getDriver('magichome').getDevice(devices[id].data);
 
     this.pingInterval = setInterval(() => {
-      devices[id].light.queryState((err, result) => {
-        if (result) {
-      	  device.setAvailable();
-          this.pollDevice(id);
-        } else if (err) {
-          this.log(err);
-          this.log('Device is not reachable, pinging every 63 seconds to see if it comes online again.');
-        }
+      devices[id].light.queryState().then(result => {
+    	  device.setAvailable();
+        this.pollDevice(id);
+      })
+      .catch((err) => {
+        this.log(err);
+        this.log('Device is not reachable, pinging every 63 seconds to see if it comes online again.');
       });
 
     }, 63000);

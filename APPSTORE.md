@@ -16,5 +16,6 @@ Make sure your LED controller is connected to the same WiFi network as your Home
 For support please use the official support topic on the forum [here](https://community.athom.com/t/1750).
 
 ## Changelog
-### v1.1.3 - 2019-02-07
-* FIX: code refactoring in driver (replace callbacks with promises)
+### v1.2.0 - 2019-02-20
+* NEW: added a custom effect card allowing you to create a custom effect with 2 - 4 colors with transtion effect (fade, jump or strobe)
+* IMPROVEMENT: updated magic-home node library and switched to promises for control commands
