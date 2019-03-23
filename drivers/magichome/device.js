@@ -2,12 +2,11 @@
 
 const Homey = require('homey');
 const { Control } = require('magic-home');
+const { Discovery } = require('magic-home');
+const discovery = new Discovery();
 const tinycolor = require("tinycolor2");
 const devices = {};
 const characteristics = {
-	rgb_min_0: true,
-	ww_min_0: true,
-	set_color_magic_bytes: [0x00, 0x0f],
 	wait_for_reply: false
 }
 
@@ -80,6 +79,11 @@ class MagicHomeDevice extends Homey.Device {
     this.pollingInterval = setInterval(() => {
 
       devices[id].light.queryState().then(result => {
+
+        if (!device.getAvailable()) {
+          device.setAvailable();
+        }
+
         let color = tinycolor({ r: result.color.red, g: result.color.green, b: result.color.blue });
         let hsv = color.toHsv();
         let hue = Number((hsv.h / 360).toFixed(2));
@@ -144,8 +148,20 @@ class MagicHomeDevice extends Homey.Device {
         this.pollDevice(id);
       })
       .catch((err) => {
-        this.log(err);
-        this.log('Device is not reachable, pinging every 63 seconds to see if it comes online again.');
+        this.error(err);
+
+        discovery.scan(3000).then(result => {
+          var magichomes = Homey.ManagerDrivers.getDriver('magichome').getDevices();
+          for (let i in result) {
+            Object.keys(magichomes).forEach(function(key) {
+              if (device.getData().id == result[i].id && device.getSetting('address') != result[i].address ) {
+                device.setSettings({address: result[i].address, model: result[i].model});
+                devices[device.getData().id].light = new Control(result[i].address, characteristics);
+              }
+            });
+          }
+        })
+
       });
 
     }, 63000);

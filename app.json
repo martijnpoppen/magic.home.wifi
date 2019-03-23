@@ -10,8 +10,8 @@
 		"en": [ "magic home", "LED", "controller", "ESP8266" ],
 		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
 	},
-	"version": "1.2.0",
-	"compatibility": ">=1.5.12",
+	"version": "1.2.1",
+	"compatibility": ">=2.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
 		"email": "homey@solidewebservices.com",
@@ -293,10 +293,6 @@
           {
             "type": "dropdown",
             "name": "colors",
-            "placeholder": {
-              "en": "Number of colors to use (leave the rest white)",
-              "nl": "Aantal kleuren (laat de rest wit)"
-            },
             "values": [
               {
                 "id": "2",
