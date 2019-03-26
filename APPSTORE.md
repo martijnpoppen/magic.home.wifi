@@ -16,5 +16,5 @@ Make sure your LED controller is connected to the same WiFi network as your Home
 For support please use the official support topic on the forum [here](https://community.athom.com/t/1750).
 
 ## Changelog
-### v1.2.1 - 2019-03-23
-* NEW: added functionality that will update a devices IP address if a change is detected (due to DHCP setup)
+### v1.2.2 - 2019-03-26
+* FIX: small fix in the new discovery to fix changed IP addresses. This was giving issues for people with multiple offline LED controllers.

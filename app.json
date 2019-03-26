@@ -10,7 +10,7 @@
 		"en": [ "magic home", "LED", "controller", "ESP8266" ],
 		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
 	},
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"compatibility": ">=2.0.0",
 	"author": {
 		"name": "Jelger Haanstra",

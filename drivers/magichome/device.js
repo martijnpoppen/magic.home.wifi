@@ -9,6 +9,7 @@ const devices = {};
 const characteristics = {
 	wait_for_reply: false
 }
+var runningDiscovery = false;
 
 class MagicHomeDevice extends Homey.Device {
 
@@ -149,19 +150,25 @@ class MagicHomeDevice extends Homey.Device {
       })
       .catch((err) => {
         this.error(err);
-
-        discovery.scan(3000).then(result => {
-          var magichomes = Homey.ManagerDrivers.getDriver('magichome').getDevices();
-          for (let i in result) {
-            Object.keys(magichomes).forEach(function(key) {
-              if (device.getData().id == result[i].id && device.getSetting('address') != result[i].address ) {
-                device.setSettings({address: result[i].address, model: result[i].model});
-                devices[device.getData().id].light = new Control(result[i].address, characteristics);
+        try {
+          if (runningDiscovery == false) {
+            runningDiscovery = true;
+            discovery.scan(3000).then(result => {
+              var magichomes = Homey.ManagerDrivers.getDriver('magichome').getDevices();
+              for (let i in result) {
+                Object.keys(magichomes).forEach(function(key) {
+                  if (device.getData().id == result[i].id && device.getSetting('address') != result[i].address ) {
+                    device.setSettings({address: result[i].address, model: result[i].model});
+                    devices[device.getData().id].light = new Control(result[i].address, characteristics);
+                  }
+                });
               }
-            });
+            })
+            setTimeout(runningDiscovery = true, 4000);
           }
-        })
-
+        } catch (error) {
+          this.error(error);
+        }
       });
 
     }, 63000);
