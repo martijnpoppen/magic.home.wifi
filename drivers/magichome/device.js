@@ -6,9 +6,7 @@ const { Discovery } = require('magic-home');
 const discovery = new Discovery();
 const tinycolor = require("tinycolor2");
 const devices = {};
-const characteristics = {
-	wait_for_reply: false
-}
+const options = { ack: Control.ackMask(0) };
 var runningDiscovery = false;
 
 class MagicHomeDevice extends Homey.Device {
@@ -17,7 +15,7 @@ class MagicHomeDevice extends Homey.Device {
     let id = this.getData().id;
     devices[id] = {};
     devices[id].data = this.getData();
-    devices[id].light = new Control(this.getSetting('address'), characteristics);
+    devices[id].light = new Control(this.getSetting('address'), options);
 
     this.pollDevice(id);
 

@@ -16,5 +16,5 @@ Make sure your LED controller is connected to the same WiFi network as your Home
 For support please use the official support topic on the forum [here](https://community.athom.com/t/1750).
 
 ## Changelog
-### v1.2.2 - 2019-03-26
-* FIX: small fix in the new discovery to fix changed IP addresses. This was giving issues for people with multiple offline LED controllers.
+### v1.3.0 - 2019-10-31
+* IMPROVEMENT: updated magic-home library for support of Magic Home bulbs

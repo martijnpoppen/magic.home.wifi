@@ -19,6 +19,7 @@ class MagicHomeDriver extends Homey.Driver {
     discovery.scan(3000).then(result => {
       let devices = [];
       for (let i in result) {
+        console.log(result);
         if (result[i].model == 'AK001-ZJ100') {
           var name = 'RGB controller '+ result[i].model +' ('+ result[i].address +')';
         } else if (result[i].model == 'AK001-ZJ200') {
