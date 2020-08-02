@@ -1,6 +1,6 @@
 {
 	"id": "magic.home.wifi",
-	"sdk": 2,
+	"sdk": 3,
   "brandColor": "#219ddb",
 	"name": {
 		"en": "Magic Home WiFi LED controller",
@@ -10,8 +10,8 @@
 		"en": [ "magic home", "LED", "controller", "ESP8266" ],
 		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
 	},
-	"version": "1.2.3",
-	"compatibility": ">=2.0.0",
+	"version": "3.0.0",
+	"compatibility": ">=5.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
 		"email": "homey@solidewebservices.com",
@@ -40,6 +40,17 @@
 	"dependencies": {
 		"net": "*"
 	},
+  "capabilities": {
+    "addressable": {
+      "type": "boolean",
+      "title": {
+        "en": "Addressable controller",
+        "nl": "Addressable controller"
+      },
+      "getable": false,
+      "setable": false
+    }
+  },
 	"drivers": [
 		{
 			"id": "magichome",
@@ -58,7 +69,8 @@
         "light_hue",
         "dim",
         "light_saturation",
-        "light_mode"
+        "light_mode",
+        "addressable"
 			],
       "pair": [
         {
@@ -279,7 +291,47 @@
 							"en": "Select Magic Home Controller",
 							"nl": "Selecteer Magic Home Controller"
 						},
-						"filter": "driver_id=magichome"
+						"filter": "driver_id=magichome&capabilities=light_temperature"
+          }
+				]
+			},
+      {
+				"id": "addressableEffect",
+				"title": {
+					"en": "Set Effect",
+					"nl": "Stel effect in"
+				},
+				"args": [
+          {
+						"name": "effect",
+						"type": "number",
+            "min": 1,
+            "max": 300,
+            "step": 1,
+            "placeholder": {
+              "en": "Effect Number (1 - 300)",
+              "nl": "Effect nummer (1 - 300)"
+            }
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "Speed (0 - 100)",
+              "nl": "Snelheid (0 - 100)"
+            }
+          },
+          {
+						"name": "device",
+						"type": "device",
+            "placeholder": {
+							"en": "Select Magic Home Controller",
+							"nl": "Selecteer Magic Home Controller"
+						},
+						"filter": "driver_id=magichome&capabilities=addressable"
           }
 				]
 			},

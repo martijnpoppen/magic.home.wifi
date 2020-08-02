@@ -11,16 +11,17 @@ var runningDiscovery = false;
 
 class MagicHomeDevice extends Homey.Device {
 
-  onInit() {
+  async onInit() {
     let id = this.getData().id;
     devices[id] = {};
     devices[id].data = this.getData();
     devices[id].light = new Control(this.getSetting('address'), options);
 
+    this.setAvailable();
     this.pollDevice(id);
 
     // LISTENERS FOR UPDATING CAPABILITIES
-    this.registerCapabilityListener('onoff', (value, opts) => {
+    this.registerCapabilityListener('onoff', async (value) => {
       let id = this.getData().id;
 
       if (value) {
@@ -30,7 +31,7 @@ class MagicHomeDevice extends Homey.Device {
       }
     });
 
-    this.registerMultipleCapabilityListener(['light_hue', 'light_saturation' ], ( valueObj, optsObj ) => {
+    this.registerMultipleCapabilityListener(['light_hue', 'light_saturation' ], async (valueObj, optsObj) => {
       if (typeof valueObj.light_hue !== 'undefined') {
         var hue_value = valueObj.light_hue;
       } else {
@@ -49,14 +50,14 @@ class MagicHomeDevice extends Homey.Device {
       return devices[id].light.setColor(Number(rgbcolor.r),Number(rgbcolor.g),Number(rgbcolor.b));
     }, 500);
 
-    this.registerCapabilityListener('dim', (value, opts) => {
+    this.registerCapabilityListener('dim', async (value) => {
       let id = this.getData().id;
       let hsv = tinycolor.fromRatio({h: this.getCapabilityValue('light_hue'), s: this.getCapabilityValue('light_saturation'), v: value});
       let rgb = hsv.toRgb();
       return devices[id].light.setColor(Number(rgb.r),Number(rgb.g),Number(rgb.b));
     });
 
-    this.registerCapabilityListener('light_temperature', (value, opts) => {
+    this.registerCapabilityListener('light_temperature', async (value) => {
       let id = this.getData().id;
       let level = Number(this.denormalize(value, 0, 255));
       return devices[id].light.setWarmWhite(level);
@@ -73,62 +74,62 @@ class MagicHomeDevice extends Homey.Device {
     clearInterval(this.pollingInterval);
     clearInterval(this.pingInterval);
 
-    let device = Homey.ManagerDrivers.getDriver('magichome').getDevice(devices[id].data);
-
     this.pollingInterval = setInterval(() => {
 
       devices[id].light.queryState().then(result => {
-
-        if (!device.getAvailable()) {
-          device.setAvailable();
+        if (!this.getAvailable()) {
+          this.setAvailable();
         }
 
         let color = tinycolor({ r: result.color.red, g: result.color.green, b: result.color.blue });
         let hsv = color.toHsv();
         let hue = Number((hsv.h / 360).toFixed(2));
         let brightness = Number(hsv.v.toFixed(2));
-        let light_temperature = Number(this.normalize(result.warm_white, 0, 255));
-
         var state = result.on;
-        if (result.mode === 'color') {
-          var light_mode = 'color';
-        } else {
-          var light_mode = 'temperature';
-        }
 
         // capability onoff
-        if (state != device.getCapabilityValue('onoff')) {
-          device.setCapabilityValue('onoff', state);
+        if (state != this.getCapabilityValue('onoff')) {
+          this.setCapabilityValue('onoff', state);
         }
 
         // capability dim
-        if (brightness != device.getCapabilityValue('dim')) {
-          device.setCapabilityValue('dim', brightness);
+        if (brightness != this.getCapabilityValue('dim')) {
+          this.setCapabilityValue('dim', brightness);
         }
 
         // capability light_hue
-        if (hue != device.getCapabilityValue('light_hue')) {
-          device.setCapabilityValue('light_hue', hue);
+        if (hue != this.getCapabilityValue('light_hue')) {
+          this.setCapabilityValue('light_hue', hue);
         }
 
         // capability light_saturation
-        if (hsv.s != device.getCapabilityValue('light_saturation')) {
-          device.setCapabilityValue('light_saturation', hsv.s);
+        if (hsv.s != this.getCapabilityValue('light_saturation')) {
+          this.setCapabilityValue('light_saturation', hsv.s);
         }
 
         // capability light_temperature
-        if (light_temperature != device.getCapabilityValue('light_temperature')) {
-          device.setCapabilityValue('light_temperature', light_temperature);
+        if (this.hasCapability('light_temperature')) {
+          let light_temperature = Number(this.normalize(result.warm_white, 0, 255));
+          if (light_temperature != this.getCapabilityValue('light_temperature')) {
+            this.setCapabilityValue('light_temperature', light_temperature);
+          }
         }
 
         // capability light_mode
-        if (light_mode != device.getCapabilityValue('light_mode')) {
-          device.setCapabilityValue('light_mode', light_mode);
+        if (this.hasCapability('light_mode')) {
+          if (result.mode === 'color') {
+            var light_mode = 'color';
+          } else {
+            var light_mode = 'temperature';
+          }
+          if (light_mode != this.getCapabilityValue('light_mode')) {
+            this.setCapabilityValue('light_mode', light_mode);
+          }
         }
       })
       .catch((err) => {
         this.log(err);
-        device.setUnavailable(Homey.__('Unreachable'));
+        this.setUnavailable(this.homey.__('Unreachable'));
         this.pingDevice(id);
       });
 
@@ -139,11 +140,9 @@ class MagicHomeDevice extends Homey.Device {
     clearInterval(this.pollingInterval);
     clearInterval(this.pingInterval);
 
-    let device = Homey.ManagerDrivers.getDriver('magichome').getDevice(devices[id].data);
-
     this.pingInterval = setInterval(() => {
       devices[id].light.queryState().then(result => {
-    	  device.setAvailable();
+    	  this.setAvailable();
         this.pollDevice(id);
       })
       .catch((err) => {
@@ -152,12 +151,12 @@ class MagicHomeDevice extends Homey.Device {
           if (runningDiscovery == false) {
             runningDiscovery = true;
             discovery.scan(3000).then(result => {
-              var magichomes = Homey.ManagerDrivers.getDriver('magichome').getDevices();
+              var magichomes = this.homey.drivers.getDriver('magichome').getDevices();
               for (let i in result) {
                 Object.keys(magichomes).forEach(function(key) {
-                  if (device.getData().id == result[i].id && device.getSetting('address') != result[i].address ) {
-                    device.setSettings({address: result[i].address, model: result[i].model});
-                    devices[device.getData().id].light = new Control(result[i].address, characteristics);
+                  if (this.getData().id == result[i].id && this.getSetting('address') != result[i].address ) {
+                    this.setSettings({address: result[i].address, model: result[i].model});
+                    devices[this.getData().id].light = new Control(result[i].address, characteristics);
                   }
                 });
               }

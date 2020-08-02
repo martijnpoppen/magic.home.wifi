@@ -12,12 +12,11 @@ const characteristics = {
 
 class MagicHomeApp extends Homey.App {
 
-  onInit() {
+  async onInit() {
     this.log('Initializing Magic Home app ...');
 
-    new Homey.FlowCardAction('colorAndWhite')
-      .register()
-      .registerRunListener((args, state) => {
+    this.homey.flow.getActionCard('colorAndWhite')
+      .registerRunListener(async (args) => {
         var light = new Control(args.device.getSetting('address'), characteristics);
         var hexcolor = tinycolor(args.color);
         var rgb = hexcolor.toRgb();
@@ -25,17 +24,22 @@ class MagicHomeApp extends Homey.App {
         return light.setColorAndWarmWhite(rgb.r, rgb.g, rgb.b, Number(args.white));
       })
 
-    new Homey.FlowCardAction('effect')
-      .register()
-      .registerRunListener((args, state) => {
+    this.homey.flow.getActionCard('effect')
+      .registerRunListener(async (args) => {
         var light = new Control(args.device.getSetting('address'), characteristics);
 
         return light.setPattern(args.effect, args.speed);
       })
 
-    new Homey.FlowCardAction('customeffect')
-      .register()
-      .registerRunListener((args, state) => {
+    this.homey.flow.getActionCard('addressableEffect')
+      .registerRunListener(async (args) => {
+        var light = new Control(args.device.getSetting('address'), characteristics);
+
+        return light.setIAPattern(args.effect, args.speed);
+      })
+
+    this.homey.flow.getActionCard('customeffect')
+      .registerRunListener(async (args) => {
         var light = new Control(args.device.getSetting('address'), characteristics);
         let customeffect = new CustomMode();
 

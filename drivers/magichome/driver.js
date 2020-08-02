@@ -7,7 +7,7 @@ const discovery = new Discovery();
 const typeCapabilityMap = {
 	'AK001-ZJ100'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation' ],
   'AK001-ZJ200'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
-  'AK001-ZJ210'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
+  'AK001-ZJ210'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'addressable' ],
   'HF-LPB100-ZJ002' : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'HF-LPB100-ZJ200' : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'other'           : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ]
@@ -15,19 +15,22 @@ const typeCapabilityMap = {
 
 class MagicHomeDriver extends Homey.Driver {
 
-  onPairListDevices (data, callback) {
-    discovery.scan(3000).then(result => {
-      let devices = [];
+  async onPairListDevices () {
+    let devices = [];
+    await discovery.scan(3000).then(result => {
       for (let i in result) {
-        console.log(result);
+        this.log(result);
         if (result[i].model == 'AK001-ZJ100') {
           var name = 'RGB controller '+ result[i].model +' ('+ result[i].address +')';
         } else if (result[i].model == 'AK001-ZJ200') {
           var name = 'RGBW controller '+ result[i].model +' ('+ result[i].address +')';
         } else if (result[i].model == 'AK001-ZJ210') {
           var name = 'RGB SPI addressable controller '+ result[i].model +' ('+ result[i].address +')';
-        } else {
+        } else if (result[i].model == 'HF-LPB100-ZJ002' || result[i].model == 'HF-LPB100-ZJ200') {
           var name = 'RGBWW controller '+ result[i].model +' ('+ result[i].address +')';
+          result[i].model = 'other';
+        } else {
+          var name = result[i].model +' ('+ result[i].address +')';
           result[i].model = 'other';
         }
 
@@ -43,11 +46,12 @@ class MagicHomeDriver extends Homey.Driver {
           capabilities: typeCapabilityMap[result[i].model],
         });
       }
-      callback(null, devices);
     })
     .catch((err) => {
-      callback(err, null);
+      return reject(err);
     });
+
+    return devices;
   }
 
 }
