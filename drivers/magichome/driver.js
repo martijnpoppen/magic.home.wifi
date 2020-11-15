@@ -8,6 +8,7 @@ const typeCapabilityMap = {
 	'AK001-ZJ100'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation' ],
   'AK001-ZJ200'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'AK001-ZJ210'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'addressable' ],
+  'AK001-ZJ2104'    : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'HF-LPB100-ZJ002' : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'HF-LPB100-ZJ200' : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'other'           : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ]
@@ -26,7 +27,7 @@ class MagicHomeDriver extends Homey.Driver {
           var name = 'RGBW controller '+ result[i].model +' ('+ result[i].address +')';
         } else if (result[i].model == 'AK001-ZJ210') {
           var name = 'RGB SPI addressable controller '+ result[i].model +' ('+ result[i].address +')';
-        } else if (result[i].model == 'HF-LPB100-ZJ002' || result[i].model == 'HF-LPB100-ZJ200') {
+        } else if (result[i].model == 'HF-LPB100-ZJ002' || result[i].model == 'HF-LPB100-ZJ200' || result[i].model == 'AK001-ZJ2104') {
           var name = 'RGBWW controller '+ result[i].model +' ('+ result[i].address +')';
           result[i].model = 'other';
         } else {

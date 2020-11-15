@@ -1,5 +1,11 @@
 {
   "3.0.0": {
     "en": "Updated to SDK3 (requires Homey version 5.x). Added support for SPI Addressable Controller including an action card to set one of the 300 pre-configured effects."
+  },
+  "3.0.1": {
+    "en": "Updated to SDK3 (requires Homey version 5.x). Added support for SPI Addressable Controller including an action card to set one of the 300 pre-configured effects."
+  },
+  "3.0.2": {
+    "en": "Updated to SDK3 (requires Homey version 5.x). Added support for SPI Addressable Controller including an action card to set one of the 300 pre-configured effects."
   }
 }

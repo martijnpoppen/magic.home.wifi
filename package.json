@@ -1,6 +1,6 @@
 {
   "name": "magic.home.wifi",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "Control LED strips through the Magic Home LED controller",
   "main": "app.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/jghaanstra/magic.home.wifi#readme",
   "dependencies": {
-    "magic-home": "^2.6.0",
-    "tinycolor2": "^1.4.1"
+    "magic-home": "^2.6.1",
+    "tinycolor2": "^1.4.2"
   }
 }

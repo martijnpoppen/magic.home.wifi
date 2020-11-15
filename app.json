@@ -10,7 +10,7 @@
 		"en": [ "magic home", "LED", "controller", "ESP8266" ],
 		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
 	},
-	"version": "3.0.0",
+	"version": "3.0.2",
 	"compatibility": ">=5.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
@@ -298,8 +298,8 @@
       {
 				"id": "addressableEffect",
 				"title": {
-					"en": "Set Effect",
-					"nl": "Stel effect in"
+					"en": "Select Effect",
+					"nl": "Selecteer effect"
 				},
 				"args": [
           {

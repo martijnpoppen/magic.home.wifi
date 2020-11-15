@@ -1,3 +1,5 @@
 {
-  "Unreachable": "Unreachable"
+  "device": {
+    "unreachable": "Unreachable"
+  }
 }

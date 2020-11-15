@@ -6,7 +6,7 @@ const { Discovery } = require('magic-home');
 const discovery = new Discovery();
 const tinycolor = require("tinycolor2");
 const devices = {};
-const options = { ack: Control.ackMask(0) };
+const options = { ack: Control.ackMask(0), connect_timeout: 8000 };
 var runningDiscovery = false;
 
 class MagicHomeDevice extends Homey.Device {
@@ -23,12 +23,7 @@ class MagicHomeDevice extends Homey.Device {
     // LISTENERS FOR UPDATING CAPABILITIES
     this.registerCapabilityListener('onoff', async (value) => {
       let id = this.getData().id;
-
-      if (value) {
-        return devices[id].light.setPower(true);
-      } else {
-        return devices[id].light.setPower(false);
-      }
+      return await devices[id].light.setPower(value);
     });
 
     this.registerMultipleCapabilityListener(['light_hue', 'light_saturation' ], async (valueObj, optsObj) => {
@@ -44,23 +39,23 @@ class MagicHomeDevice extends Homey.Device {
         var saturation_value = this.getCapabilityValue('light_saturation');
       }
 
-      let id = this.getData().id;
-      let color = tinycolor.fromRatio({ h: hue_value, s: saturation_value, v: this.getCapabilityValue('dim') });
-      let rgbcolor = color.toRgb();
-      return devices[id].light.setColor(Number(rgbcolor.r),Number(rgbcolor.g),Number(rgbcolor.b));
+      const id = this.getData().id;
+      const color = tinycolor.fromRatio({ h: hue_value, s: saturation_value, v: this.getCapabilityValue('dim') });
+      const rgbcolor = color.toRgb();
+      return await devices[id].light.setColor(Number(rgbcolor.r),Number(rgbcolor.g),Number(rgbcolor.b));
     }, 500);
 
     this.registerCapabilityListener('dim', async (value) => {
-      let id = this.getData().id;
-      let hsv = tinycolor.fromRatio({h: this.getCapabilityValue('light_hue'), s: this.getCapabilityValue('light_saturation'), v: value});
-      let rgb = hsv.toRgb();
-      return devices[id].light.setColor(Number(rgb.r),Number(rgb.g),Number(rgb.b));
+      const id = this.getData().id;
+      const hsv = tinycolor.fromRatio({h: this.getCapabilityValue('light_hue'), s: this.getCapabilityValue('light_saturation'), v: value});
+      const rgb = hsv.toRgb();
+      return await devices[id].light.setColor(Number(rgb.r),Number(rgb.g),Number(rgb.b));
     });
 
     this.registerCapabilityListener('light_temperature', async (value) => {
-      let id = this.getData().id;
-      let level = Number(this.denormalize(value, 0, 255));
-      return devices[id].light.setWarmWhite(level);
+      const id = this.getData().id;
+      const level = Number(this.denormalize(value, 0, 255));
+      return await devices[id].light.setWarmWhite(level);
     });
 
   }
@@ -74,18 +69,16 @@ class MagicHomeDevice extends Homey.Device {
     clearInterval(this.pollingInterval);
     clearInterval(this.pingInterval);
 
-    this.pollingInterval = setInterval(() => {
-
-      devices[id].light.queryState().then(result => {
-        if (!this.getAvailable()) {
-          this.setAvailable();
-        }
+    this.pollingInterval = setInterval(async () => {
+      try {
+        let result = await devices[id].light.queryState();
+        if (!this.getAvailable()) { this.setAvailable(); }
 
         let color = tinycolor({ r: result.color.red, g: result.color.green, b: result.color.blue });
         let hsv = color.toHsv();
         let hue = Number((hsv.h / 360).toFixed(2));
         let brightness = Number(hsv.v.toFixed(2));
-        var state = result.on;
+        let state = result.on;
 
         // capability onoff
         if (state != this.getCapabilityValue('onoff')) {
@@ -126,13 +119,12 @@ class MagicHomeDevice extends Homey.Device {
             this.setCapabilityValue('light_mode', light_mode);
           }
         }
-      })
-      .catch((err) => {
-        this.log(err);
-        this.setUnavailable(this.homey.__('Unreachable'));
-        this.pingDevice(id);
-      });
 
+      } catch (error) {
+        this.log(error);
+        this.setUnavailable(this.homey.__('device.unreachable')+ ': '+ error);
+        this.pingDevice(id);
+      }
     }, 10000);
   }
 
@@ -140,34 +132,29 @@ class MagicHomeDevice extends Homey.Device {
     clearInterval(this.pollingInterval);
     clearInterval(this.pingInterval);
 
-    this.pingInterval = setInterval(() => {
-      devices[id].light.queryState().then(result => {
-    	  this.setAvailable();
+    this.pingInterval = setInterval(async () => {
+      try {
+        this.log('Device is not reachable, pinging every 63 seconds to see if it comes online again.');
+        devices[id].light = new Control(this.getSetting('address'), options);
+        let result = await devices[id].light.queryState();
+        this.setAvailable();
         this.pollDevice(id);
-      })
-      .catch((err) => {
-        this.error(err);
-        try {
-          if (runningDiscovery == false) {
-            runningDiscovery = true;
-            discovery.scan(3000).then(result => {
-              var magichomes = this.homey.drivers.getDriver('magichome').getDevices();
-              for (let i in result) {
-                Object.keys(magichomes).forEach(function(key) {
-                  if (this.getData().id == result[i].id && this.getSetting('address') != result[i].address ) {
-                    this.setSettings({address: result[i].address, model: result[i].model});
-                    devices[this.getData().id].light = new Control(result[i].address, characteristics);
-                  }
-                });
+      } catch (error) {
+        if (runningDiscovery == false) {
+          runningDiscovery = true;
+          const discover = await discovery.scan(3000);
+          const magichomes = await this.homey.drivers.getDriver('magichome').getDevices();
+          for (let i in discover) {
+            Object.keys(magichomes).forEach(function(key) {
+              if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
+                this.setSettings({address: discover[i].address, model: discover[i].model});
+                devices[this.getData().id].light = new Control(discover[i].address, options);
               }
-            })
-            setTimeout(runningDiscovery = true, 4000);
+            });
           }
-        } catch (error) {
-          this.error(error);
+          setTimeout(() => { runningDiscovery = true }, 10000);
         }
-      });
-
+      }
     }, 63000);
   }
 
