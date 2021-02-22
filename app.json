@@ -10,7 +10,7 @@
 		"en": [ "magic home", "LED", "controller", "ESP8266" ],
 		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
 	},
-	"version": "3.0.2",
+	"version": "3.0.3",
 	"compatibility": ">=5.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
@@ -29,8 +29,9 @@
 	},
   "homeyCommunityTopicId": 1750,
 	"images": {
-		"large": "./assets/images/large.jpg",
-		"small": "./assets/images/small.jpg"
+		"small": "./assets/images/small.jpg",
+    "large": "./assets/images/large.jpg",
+    "xlarge": "./assets/images/xlarge.jpg"
 	},
 	"category": "lights",
 	"description": {
@@ -59,8 +60,9 @@
 				"nl": "Magic Home LED controller"
 			},
 			"images": {
-				"large": "drivers/magichome/assets/images/large.jpg",
-				"small": "drivers/magichome/assets/images/small.jpg"
+				"small": "drivers/magichome/assets/images/small.jpg",
+        "large": "drivers/magichome/assets/images/large.jpg",
+        "xlarge": "drivers/magichome/assets/images/xlarge.jpg"
 			},
 			"class": "light",
 			"capabilities": [
