@@ -10,7 +10,7 @@
 		"en": [ "magic home", "LED", "controller", "ESP8266" ],
 		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
 	},
-	"version": "3.0.3",
+	"version": "3.0.4",
 	"compatibility": ">=5.0.0",
 	"author": {
 		"name": "Jelger Haanstra",
@@ -97,6 +97,10 @@
 					"en": "Set color and white level",
 					"nl": "Stel kleur en wit niveau in"
 				},
+        "titleFormatted": {
+          "en": "Set color to [[color]] and white level to [[white]]",
+					"nl": "Stel kleur in op [[color]] en wit niveau in op [[white]]"
+        },
 				"args": [
           {
 						"name": "color",
@@ -128,6 +132,10 @@
 					"en": "Set Effect",
 					"nl": "Stel effect in"
 				},
+        "titleFormatted": {
+          "en": "Set Effect to [[effect]] with speed [[speed]]",
+					"nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
+        },
 				"args": [
           {
 						"name": "effect",
@@ -303,6 +311,10 @@
 					"en": "Select Effect",
 					"nl": "Selecteer effect"
 				},
+        "titleFormatted": {
+          "en": "Set Effect to [[effect]] with speed [[speed]]",
+					"nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
+        },
 				"args": [
           {
 						"name": "effect",
@@ -342,6 +354,10 @@
 				"title": {
 					"en": "Create a custom effect",
 					"nl": "Maak een eigen effect"
+				},
+        "titleFormatted": {
+					"en": "Create a custom effect with colors [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], transition [[transition]] and speed [[speed]]",
+					"nl": "Maak een eigen effect met kleuren [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], overgang [[transition]] en snelheid [[speed]]"
 				},
 				"args": [
           {

@@ -58,6 +58,10 @@ class MagicHomeDevice extends Homey.Device {
       return await devices[id].light.setWarmWhite(level);
     });
 
+    this.registerCapabilityListener('light_mode', async (value) => {
+      return;
+    });
+
   }
 
   onDeleted() {

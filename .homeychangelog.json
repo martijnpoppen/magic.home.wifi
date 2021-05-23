@@ -10,5 +10,8 @@
   },
   "3.0.3": {
     "en": "Updated to SDK3 (requires Homey version 5.x). Added support for SPI Addressable Controller including an action card to set one of the 300 pre-configured effects."
+  },
+  "3.0.4": {
+    "en": "Fixed issue with missing light mode capability and added extra logic as a possible workaround for an issue in the magic-home library resulting in multiple devices being added upon pairing."
   }
 }
