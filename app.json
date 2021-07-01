@@ -1,46 +1,93 @@
 {
-	"id": "magic.home.wifi",
-	"sdk": 3,
+  "id": "magic.home.wifi",
+  "version": "3.1.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
   "brandColor": "#219ddb",
-	"name": {
-		"en": "Magic Home WiFi LED controller",
-		"nl": "Magic Home WiFi LED controller"
-	},
-	"tags": {
-		"en": [ "magic home", "LED", "controller", "ESP8266" ],
-		"nl": [ "magic home", "LED", "controller", "ESP8266" ]
-	},
-	"version": "3.0.4",
-	"compatibility": ">=5.0.0",
-	"author": {
-		"name": "Jelger Haanstra",
-		"email": "homey@solidewebservices.com",
-		"website": "https://github.com/jghaanstra/magic.home.wifi"
-	},
-	"contributing": {
-		"donate": {
-			"paypal": {
-				"username": "jghaanstra"
-			}
-		}
-	},
-	"bugs": {
-		"url": "https://github.com/jghaanstra/magic.home.wifi/issues"
-	},
-  "homeyCommunityTopicId": 1750,
-	"images": {
-		"small": "./assets/images/small.jpg",
+  "dependencies": {
+    "net": "*"
+  },
+  "name": {
+    "en": "Magic Home WiFi LED",
+    "nl": "Magic Home WiFi LED"
+  },
+  "description": {
+    "en": "Control LED strips",
+    "nl": "Bestuur LED strips"
+  },
+  "tags": {
+    "en": [
+      "magic home",
+      "LED",
+      "controller",
+      "ESP8266",
+      "LED Strips",
+      "Hue",
+      "Saturation",
+      "Color",
+      "RGB",
+      "RGBWW",
+      "RGBW",
+      "Infrared"
+    ],
+    "nl": [
+      "magic home",
+      "LED",
+      "controller",
+      "ESP8266",
+      "LED Strips",
+      "Hue",
+      "Saturation",
+      "Color",
+      "RGB",
+      "RGBWW",
+      "RGBW",
+      "Infrared"
+    ]
+  },
+  "category": "lights",
+  "images": {
+    "small": "./assets/images/small.jpg",
     "large": "./assets/images/large.jpg",
     "xlarge": "./assets/images/xlarge.jpg"
-	},
-	"category": "lights",
-	"description": {
-		"en": "Control LED strips through the Magic Home LED controller",
-		"nl": "Bestuur LED strips via de Magic Home LED controller"
-	},
-	"dependencies": {
-		"net": "*"
-	},
+  },
+  "author": {
+    "name": "Martijn Poppen",
+    "email": "magichome@martijnpoppen.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Martijn Poppen",
+        "email": "magichome@martijnpoppen.nl"
+      },
+      {
+        "name": "Jelger Haanstra",
+        "email": "homey@solidewebservices.com"
+      }
+    ],
+    "translators": [
+      {
+        "name": "🇬🇧 Martijn P."
+      },
+      {
+        "name": "🇳🇱 Martijn P."
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "martijnpoppen"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://community.athom.com/t/app-magic-home-led-controllers/1750"
+  },
+  "source": "https://github.com/martijnpoppen/magic.home.wifi",
+  "homeyCommunityTopicId": 1750,
+  "support": "https://community.athom.com/t/app-magic-home-led-controllers/1750",
   "capabilities": {
     "addressable": {
       "type": "boolean",
@@ -52,20 +99,20 @@
       "setable": false
     }
   },
-	"drivers": [
-		{
-			"id": "magichome",
-			"name": {
-				"en": "Magic Home LED Controller",
-				"nl": "Magic Home LED controller"
-			},
-			"images": {
-				"small": "drivers/magichome/assets/images/small.jpg",
+  "drivers": [
+    {
+      "id": "magichome",
+      "name": {
+        "en": "Magic Home LED Controller",
+        "nl": "Magic Home LED controller"
+      },
+      "images": {
+        "small": "drivers/magichome/assets/images/small.jpg",
         "large": "drivers/magichome/assets/images/large.jpg",
         "xlarge": "drivers/magichome/assets/images/xlarge.jpg"
-			},
-			"class": "light",
-			"capabilities": [
+      },
+      "class": "light",
+      "capabilities": [
         "onoff",
         "light_temperature",
         "light_hue",
@@ -73,7 +120,7 @@
         "light_saturation",
         "light_mode",
         "addressable"
-			],
+      ],
       "pair": [
         {
           "id": "list_devices",
@@ -87,28 +134,28 @@
           "template": "add_devices"
         }
       ]
-		}
-	],
+    }
+  ],
   "flow": {
     "actions": [
       {
-				"id": "colorAndWhite",
-				"title": {
-					"en": "Set color and white level",
-					"nl": "Stel kleur en wit niveau in"
-				},
+        "id": "colorAndWhite",
+        "title": {
+          "en": "Set color and white level",
+          "nl": "Stel kleur en wit niveau in"
+        },
         "titleFormatted": {
           "en": "Set color to [[color]] and white level to [[white]]",
-					"nl": "Stel kleur in op [[color]] en wit niveau in op [[white]]"
+          "nl": "Stel kleur in op [[color]] en wit niveau in op [[white]]"
         },
-				"args": [
+        "args": [
           {
-						"name": "color",
-						"type": "color"
+            "name": "color",
+            "type": "color"
           },
           {
-						"name": "white",
-						"type": "range",
+            "name": "white",
+            "type": "range",
             "min": 0,
             "max": 100,
             "step": 1,
@@ -116,30 +163,30 @@
             "labelDecimals": 0
           },
           {
-						"name": "device",
-						"type": "device",
+            "name": "device",
+            "type": "device",
             "placeholder": {
-							"en": "Select Magic Home Controller",
-							"nl": "Selecteer Magic Home Controller"
-						},
-						"filter": "driver_id=magichome&capabilities=light_temperature"
+              "en": "Select Magic Home Controller",
+              "nl": "Selecteer Magic Home Controller"
+            },
+            "filter": "driver_id=magichome&capabilities=light_temperature"
           }
-				]
-			},
+        ]
+      },
       {
-				"id": "effect",
-				"title": {
-					"en": "Set Effect",
-					"nl": "Stel effect in"
-				},
+        "id": "effect",
+        "title": {
+          "en": "Set Effect",
+          "nl": "Stel effect in"
+        },
         "titleFormatted": {
           "en": "Set Effect to [[effect]] with speed [[speed]]",
-					"nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
+          "nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
         },
-				"args": [
+        "args": [
           {
-						"name": "effect",
-						"type": "dropdown",
+            "name": "effect",
+            "type": "dropdown",
             "values": [
               {
                 "id": "seven_color_cross_fade",
@@ -295,30 +342,30 @@
             }
           },
           {
-						"name": "device",
-						"type": "device",
+            "name": "device",
+            "type": "device",
             "placeholder": {
-							"en": "Select Magic Home Controller",
-							"nl": "Selecteer Magic Home Controller"
-						},
-						"filter": "driver_id=magichome&capabilities=light_temperature"
+              "en": "Select Magic Home Controller",
+              "nl": "Selecteer Magic Home Controller"
+            },
+            "filter": "driver_id=magichome&capabilities=light_temperature"
           }
-				]
-			},
+        ]
+      },
       {
-				"id": "addressableEffect",
-				"title": {
-					"en": "Select Effect",
-					"nl": "Selecteer effect"
-				},
+        "id": "addressableEffect",
+        "title": {
+          "en": "Select Effect",
+          "nl": "Selecteer effect"
+        },
         "titleFormatted": {
           "en": "Set Effect to [[effect]] with speed [[speed]]",
-					"nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
+          "nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
         },
-				"args": [
+        "args": [
           {
-						"name": "effect",
-						"type": "number",
+            "name": "effect",
+            "type": "number",
             "min": 1,
             "max": 300,
             "step": 1,
@@ -339,27 +386,27 @@
             }
           },
           {
-						"name": "device",
-						"type": "device",
+            "name": "device",
+            "type": "device",
             "placeholder": {
-							"en": "Select Magic Home Controller",
-							"nl": "Selecteer Magic Home Controller"
-						},
-						"filter": "driver_id=magichome&capabilities=addressable"
+              "en": "Select Magic Home Controller",
+              "nl": "Selecteer Magic Home Controller"
+            },
+            "filter": "driver_id=magichome&capabilities=addressable"
           }
-				]
-			},
+        ]
+      },
       {
-				"id": "customeffect",
-				"title": {
-					"en": "Create a custom effect",
-					"nl": "Maak een eigen effect"
-				},
+        "id": "customeffect",
+        "title": {
+          "en": "Create a custom effect",
+          "nl": "Maak een eigen effect"
+        },
         "titleFormatted": {
-					"en": "Create a custom effect with colors [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], transition [[transition]] and speed [[speed]]",
-					"nl": "Maak een eigen effect met kleuren [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], overgang [[transition]] en snelheid [[speed]]"
-				},
-				"args": [
+          "en": "Create a custom effect with colors [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], transition [[transition]] and speed [[speed]]",
+          "nl": "Maak een eigen effect met kleuren [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], overgang [[transition]] en snelheid [[speed]]"
+        },
+        "args": [
           {
             "type": "dropdown",
             "name": "colors",
@@ -388,20 +435,20 @@
             ]
           },
           {
-						"name": "color1",
-						"type": "color"
+            "name": "color1",
+            "type": "color"
           },
           {
-						"name": "color2",
-						"type": "color"
+            "name": "color2",
+            "type": "color"
           },
           {
-						"name": "color3",
-						"type": "color"
+            "name": "color3",
+            "type": "color"
           },
           {
-						"name": "color4",
-						"type": "color"
+            "name": "color4",
+            "type": "color"
           },
           {
             "type": "dropdown",
@@ -442,16 +489,16 @@
             }
           },
           {
-						"name": "device",
-						"type": "device",
+            "name": "device",
+            "type": "device",
             "placeholder": {
-							"en": "Select Magic Home Controller",
-							"nl": "Selecteer Magic Home Controller"
-						},
-						"filter": "driver_id=magichome"
+              "en": "Select Magic Home Controller",
+              "nl": "Selecteer Magic Home Controller"
+            },
+            "filter": "driver_id=magichome"
           }
-				]
-			}
+        ]
+      }
     ]
   }
 }
