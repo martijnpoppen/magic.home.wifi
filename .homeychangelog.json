@@ -16,5 +16,8 @@
   },
   "3.1.0": {
     "en": "NEW: app owner changed"
+  },
+  "3.1.1": {
+    "en": "OPT: add ip address to device settings"
   }
 }
