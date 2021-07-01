@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jghaanstra/magic.home.wifi.git"
+    "url": "git+https://github.com/martijnpoppen/magic.home.wifi.git"
   },
   "keywords": [
     "magic",
@@ -16,12 +16,12 @@
     "LED",
     "controller"
   ],
-  "author": "Jelger Haanstra",
+  "author": "Martijn Poppen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jghaanstra/magic.home.wifi/issues"
+    "url": "https://github.com/martijnpoppen/magic.home.wifi/issues"
   },
-  "homepage": "https://github.com/jghaanstra/magic.home.wifi#readme",
+  "homepage": "https://github.com/martijnpoppen/magic.home.wifi#readme",
   "dependencies": {
     "magic-home": "^2.6.1",
     "tinycolor2": "^1.4.2"

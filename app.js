@@ -1,71 +1,23 @@
 "use strict";
 
-const Homey = require('homey');
-const { Control, CustomMode } = require('magic-home');
-const tinycolor = require("tinycolor2");
-const characteristics = {
-	rgb_min_0: true,
-	ww_min_0: true,
-	set_color_magic_bytes: [0x00, 0x0f],
-	wait_for_reply: false
-}
+const Homey = require("homey");
+const actions = require("./lib/flow/actions");
 
-class MagicHomeApp extends Homey.App {
-
-  async onInit() {
-    this.log('Initializing Magic Home app ...');
-
-    this.homey.flow.getActionCard('colorAndWhite')
-      .registerRunListener(async (args) => {
-        var light = new Control(args.device.getSetting('address'), characteristics);
-        var hexcolor = tinycolor(args.color);
-        var rgb = hexcolor.toRgb();
-
-        return light.setColorAndWarmWhite(rgb.r, rgb.g, rgb.b, Number(args.white));
-      })
-
-    this.homey.flow.getActionCard('effect')
-      .registerRunListener(async (args) => {
-        var light = new Control(args.device.getSetting('address'), characteristics);
-
-        return light.setPattern(args.effect, args.speed);
-      })
-
-    this.homey.flow.getActionCard('addressableEffect')
-      .registerRunListener(async (args) => {
-        var light = new Control(args.device.getSetting('address'), characteristics);
-
-        return light.setIAPattern(args.effect, args.speed);
-      })
-
-    this.homey.flow.getActionCard('customeffect')
-      .registerRunListener(async (args) => {
-        var light = new Control(args.device.getSetting('address'), characteristics);
-        let customeffect = new CustomMode();
-
-        let hexcolor1 = tinycolor(args.color1);
-        let hexcolor2 = tinycolor(args.color2);
-        let hexcolor3 = tinycolor(args.color3);
-        let hexcolor4 = tinycolor(args.color4);
-        let rgb1 = hexcolor1.toRgb();
-        let rgb2 = hexcolor2.toRgb();
-        let rgb3 = hexcolor3.toRgb();
-        let rgb4 = hexcolor4.toRgb();
-
-        customeffect
-          .addColor(rgb1.r, rgb1.g, rgb1.b)
-          .addColor(rgb2.r, rgb2.g, rgb2.b);
-        if (Number(args.colors) > 2) {
-          customeffect.addColor(rgb3.r, rgb3.g, rgb3.b);
-        }
-        if (Number(args.colors) > 3) {
-          customeffect.addColor(rgb4.r, rgb4.g, rgb4.b);
-        }
-      	customeffect.setTransitionType(args.transition);
-        return light.setCustomPattern(customeffect, args.speed);
-      })
+class App extends Homey.App {
+  log() {
+    console.log.bind(this, "[log]").apply(this, arguments);
   }
 
+  error() {
+    console.error.bind(this, "[error]").apply(this, arguments);
+  }
+
+  // -------------------- INIT ----------------------
+  async onInit() {
+    this.log(`${this.homey.manifest.id} - ${this.homey.manifest.version} started...`);
+
+    await actions.init(this.homey);
+  }
 }
 
-module.exports = MagicHomeApp;
+module.exports = App;
