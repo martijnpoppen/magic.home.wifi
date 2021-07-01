@@ -64,6 +64,10 @@ class MagicHomeDevice extends Homey.Device {
 
   }
 
+  async onSettings({ newSettings }) {
+    devices[id].light = new Control(newSettings.address, options);
+  }
+
   onDeleted() {
     clearInterval(this.pollingInterval);
   }
