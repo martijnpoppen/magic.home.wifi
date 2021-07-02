@@ -22,5 +22,8 @@
   },
   "3.1.2": {
     "en": "OPT: change ip when settings are changed"
+  },
+  "3.2.0": {
+    "en": "NEW: add Capability filter - FIX: white color selector not jumping back anymore"
   }
 }
