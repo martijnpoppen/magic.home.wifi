@@ -8,7 +8,7 @@ const typeCapabilityMap = {
   'AK001-ZJ100'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation' ],
   'AK001-ZJ200'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'AK001-ZJ210'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'addressable' ],
-  'AK001-ZJ2104'    : [ 'onoff', 'dim', 'light_mode' ],
+  'AK001-ZJ2104'    : [ 'onoff', 'dim' ],
   'AK001-ZJ2145'    : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'HF-LPB100'       : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
   'HF-LPB100-ZJ002' : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],

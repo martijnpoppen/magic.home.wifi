@@ -18,6 +18,7 @@ class MagicHomeDevice extends Homey.Device {
     this.setUnavailable(`Initializing ${this.getName()}`);
 
     await this.checkCapabilities();
+    await this.setCapabilityListeners();
 
     let id = this.getData().id;
     devices[id] = {};
@@ -26,38 +27,45 @@ class MagicHomeDevice extends Homey.Device {
 
     this.retreivePollValues(id);
     this.pollDevice(id, 'onInit');
+  }
 
+  async setCapabilityListeners() {
     // LISTENERS FOR UPDATING CAPABILITIES
     this.registerCapabilityListener('onoff', async (value) => {
       let id = this.getData().id;
       return await devices[id].light.setPower(value);
     });
-
-    this.registerMultipleCapabilityListener(['light_hue', 'light_saturation' ], async (valueObj, optsObj) => {
-      this.resetPoll();
-
-      if (typeof valueObj.light_hue !== 'undefined') {
-        var hue_value = valueObj.light_hue;
-      } else {
-        var hue_value = this.getCapabilityValue('light_hue');
-      }
-
-      if (typeof valueObj.light_saturation !== 'undefined') {
-        var saturation_value = valueObj.light_saturation;
-      } else {
-        var saturation_value = this.getCapabilityValue('light_saturation');
-      }
-
-      this.setColor(hue_value, saturation_value);
-    }, 500);
-
-    this.registerCapabilityListener('dim', async (value) => {
+  
+    if(this.hasCapability('light_hue') || this.hasCapability('light_saturation')) {
+        this.registerMultipleCapabilityListener(['light_hue', 'light_saturation' ], async (valueObj, optsObj) => {
         this.resetPoll();
-        
-        this.setColor(undefined, undefined, value);
-    });
 
-    this.registerCapabilityListener('light_temperature', async (value) => {
+        if (typeof valueObj.light_hue !== 'undefined') {
+            var hue_value = valueObj.light_hue;
+        } else {
+            var hue_value = this.getCapabilityValue('light_hue');
+        }
+
+        if (typeof valueObj.light_saturation !== 'undefined') {
+            var saturation_value = valueObj.light_saturation;
+        } else {
+            var saturation_value = this.getCapabilityValue('light_saturation');
+        }
+
+        this.setColor(hue_value, saturation_value);
+        }, 500);
+    }
+  
+    if(this.hasCapability('dim')) {
+        this.registerCapabilityListener('dim', async (value) => {
+            this.resetPoll();
+            
+            this.setColor(undefined, undefined, value);
+        });
+    }
+  
+    if(this.hasCapability('light_temperature')) {
+      this.registerCapabilityListener('light_temperature', async (value) => {
       this.resetPoll();
 
       const id = this.getData().id;
@@ -68,44 +76,44 @@ class MagicHomeDevice extends Homey.Device {
       await devices[id].light.setWarmWhite(level);
 
       return this.pollDevice(id, 'light_temperature');
-    });
+      });
 
-    this.registerCapabilityListener('light_mode', async (value) => {
+      this.registerCapabilityListener('light_mode', async (value) => {
       return;
-    });
-
+      });
+    }
   }
 
-    async checkCapabilities() {
-        const driverManifest = this.driver.manifest;
-        const driverCapabilities = driverManifest.capabilities;
-        
-        const deviceCapabilities = this.getCapabilities();
+  async checkCapabilities() {
+      const driverManifest = this.driver.manifest;
+      const driverCapabilities = driverManifest.capabilities;
+      
+      const deviceCapabilities = this.getCapabilities();
 
-        this.homey.app.log(`[Device] ${this.getName()} - Found capabilities =>`, deviceCapabilities);
-        
-        if(deviceCapabilities.length > driverCapabilities.length || driverCapabilities.length < deviceCapabilities.length) {      
-            await this.updateCapabilities(driverCapabilities);
-        }
+      this.homey.app.log(`[Device] ${this.getName()} - Found capabilities =>`, deviceCapabilities);
+      
+      if(deviceCapabilities.length > driverCapabilities.length || driverCapabilities.length < deviceCapabilities.length) {      
+          await this.updateCapabilities(driverCapabilities);
+      }
 
-        return deviceCapabilities;
-    }
+      return deviceCapabilities;
+  }
 
-    async updateCapabilities(driverCapabilities) {
-        this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, driverCapabilities);
-        try {
-            deviceCapabilities.forEach(c => {
-                this.addCapability(c);
-            });
-            await sleep(2000);
-            driverCapabilities.forEach(c => {
-                this.addCapability(c);
-            });
-            await sleep(2000);
-        } catch (error) {
-            this.homey.app.log(error)
-        }
-    }
+  async updateCapabilities(driverCapabilities) {
+      this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, driverCapabilities);
+      try {
+          deviceCapabilities.forEach(c => {
+              this.addCapability(c);
+          });
+          await sleep(2000);
+          driverCapabilities.forEach(c => {
+              this.addCapability(c);
+          });
+          await sleep(2000);
+      } catch (error) {
+          this.homey.app.log(error)
+      }
+  }
 
   async setColor(light_hue, light_saturation, dim) {
     const id = this.getData().id;
