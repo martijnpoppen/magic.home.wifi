@@ -31,5 +31,8 @@
   },
   "3.2.2": {
     "en": "FIX: check if hasCapability before registering CapabilityListener"
+  },
+  "3.2.3": {
+    "en": "FIX: updateCapabilities onInit"
   }
 }
