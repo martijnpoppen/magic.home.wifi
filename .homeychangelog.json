@@ -25,5 +25,8 @@
   },
   "3.2.0": {
     "en": "NEW: add Capability filter - FIX: white color selector not jumping back anymore"
+  },
+  "3.2.1": {
+    "en": "OPT: remove light_mode for AK001-ZJ2104"
   }
 }
