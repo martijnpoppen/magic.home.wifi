@@ -28,5 +28,8 @@
   },
   "3.2.1": {
     "en": "OPT: remove light_mode for AK001-ZJ2104"
+  },
+  "3.2.2": {
+    "en": "FIX: check if hasCapability before registering CapabilityListener"
   }
 }
