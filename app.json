@@ -1,6 +1,6 @@
 {
   "id": "magic.home.wifi",
-  "version": "3.2.3",
+  "version": "3.3.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#5bc2f1",
@@ -152,6 +152,15 @@
             "nl": "Model"
           },
           "value": ""
+        },
+        {
+          "id": "RGB_W",
+          "type": "checkbox",
+          "label": {
+            "en": "RGB+W (mixed)",
+            "nl": "RGB+W (mixed)"
+          },
+          "value": false
         }
       ]
     }

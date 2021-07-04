@@ -34,5 +34,8 @@
   },
   "3.2.3": {
     "en": "FIX: updateCapabilities onInit"
+  },
+  "3.3.0": {
+    "en": "NEW: add setting for RGB+W. Default is now RGB/W"
   }
 }
