@@ -37,5 +37,8 @@
   },
   "3.3.0": {
     "en": "NEW: add setting for RGB+W. Default is now RGB/W"
+  },
+  "3.3.1": {
+    "en": "FIX: error in device polling"
   }
 }
