@@ -260,10 +260,10 @@ class MagicHomeDevice extends Homey.Device {
           const discover = await discovery.scan(3000);
           const magichomes = await this.homey.drivers.getDriver('magichome').getDevices();
           for (let i in discover) {
-            Object.keys(magichomes).forEach(function(key) {
-              if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
-                this.setSettings({address: discover[i].address, model: discover[i].model});
-                devices[this.getData().id].light = new Control(discover[i].address, options);
+            Object.keys(magichomes).forEach(function(d) {
+              if (d.getData().id == discover[i].id && d.getSetting('address') != discover[i].address ) {
+                d.setSettings({address: discover[i].address, model: discover[i].model});
+                devices[d.getData().id].light = new Control(discover[i].address, options);
               }
             });
           }
