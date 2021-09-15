@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/martijnpoppen/magic.home.wifi#readme",
   "dependencies": {
-    "magic-home": "^2.6.1",
+    "magic-home": "^2.7.0",
     "tinycolor2": "^1.4.2"
   }
 }

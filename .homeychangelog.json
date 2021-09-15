@@ -40,5 +40,11 @@
   },
   "3.3.1": {
     "en": "FIX: error in device polling"
+  },
+  "3.3.3": {
+    "en": "Fix error in device polling"
+  },
+  "3.3.4": {
+    "en": "FIX: AK001-ZJ200 + update magic-home library"
   }
 }

@@ -7,7 +7,7 @@ const { Control, Discovery } = require('magic-home');
 const discovery = new Discovery();
 
 const devices = {};
-const options = { ack: Control.ackMask(0), connect_timeout: 8000 };
+const options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: false };
 let runningDiscovery = false;
 
 
@@ -25,6 +25,7 @@ class MagicHomeDevice extends Homey.Device {
     devices[id].data = this.getData();
     devices[id].light = new Control(this.getSetting('address'), options);
 
+    console.log('control', devices[id].light);
     this.retreivePollValues(id);
     this.pollDevice(id, 'onInit');
   }
