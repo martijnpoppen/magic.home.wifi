@@ -97,7 +97,16 @@
       },
       "getable": false,
       "setable": false
-    }
+    },
+    "cold_white": {
+        "type": "boolean",
+        "title": {
+          "en": "Cold White controller",
+          "nl": "Cold White controller"
+        },
+        "getable": false,
+        "setable": false
+      }
   },
   "drivers": [
     {
@@ -119,6 +128,7 @@
         "dim",
         "light_saturation",
         "light_mode",
+        "cold_white",
         "addressable"
       ],
       "pair": [

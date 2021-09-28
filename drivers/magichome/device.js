@@ -5,9 +5,10 @@ const { sleep } = require('../../lib/helpers');
 const tinycolor = require("tinycolor2");
 const { Control, Discovery } = require('magic-home');
 const discovery = new Discovery();
+const { typeCapabilityMap } = require('../../constants');
 
 const devices = {};
-const options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: false };
+const options = { ack: Control.ackMask(0), connect_timeout: 8000 };
 let runningDiscovery = false;
 
 
@@ -109,8 +110,8 @@ class MagicHomeDevice extends Homey.Device {
   }
 
   async checkCapabilities() {
-      const driverManifest = this.driver.manifest;
-      const driverCapabilities = driverManifest.capabilities;
+      const model = this.getSetting('model');
+      const driverCapabilities = typeCapabilityMap[model];
       
       const deviceCapabilities = this.getCapabilities();
 
@@ -128,7 +129,7 @@ class MagicHomeDevice extends Homey.Device {
       this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, driverCapabilities);
       try {
           deviceCapabilities.forEach(c => {
-              this.addCapability(c);
+            this.removeCapability(c);
           });
           await sleep(2000);
           driverCapabilities.forEach(c => {
