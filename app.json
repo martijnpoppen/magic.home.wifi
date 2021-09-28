@@ -1,6 +1,6 @@
 {
   "id": "magic.home.wifi",
-  "version": "3.3.5",
+  "version": "3.3.9",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#5bc2f1",
@@ -99,14 +99,14 @@
       "setable": false
     },
     "cold_white": {
-        "type": "boolean",
-        "title": {
-          "en": "Cold White controller",
-          "nl": "Cold White controller"
-        },
-        "getable": false,
-        "setable": false
-      }
+      "type": "boolean",
+      "title": {
+        "en": "Cold White controller",
+        "nl": "Cold White controller"
+      },
+      "getable": false,
+      "setable": false
+    }
   },
   "drivers": [
     {
@@ -156,11 +156,85 @@
         },
         {
           "id": "model",
-          "type": "label",
+          "type": "dropdown",
           "label": {
             "en": "Model",
             "nl": "Model"
           },
+          "values": [
+            {
+              "id": "AK001-ZJ100",
+              "label": {
+                "en": "AK001-ZJ100"
+              }
+            },
+            {
+              "id": "AK001-ZJ200",
+              "label": {
+                "en": "AK001-ZJ200"
+              }
+            },
+            {
+              "id": "AK001-ZJ210",
+              "label": {
+                "en": "AK001-ZJ210"
+              }
+            },
+            {
+              "id": "AK001-ZJ2101",
+              "label": {
+                "en": "AK001-ZJ2101"
+              }
+            },
+            {
+              "id": "AK001-ZJ2104",
+              "label": {
+                "en": "AK001-ZJ2104"
+              }
+            },
+            {
+              "id": "AK001-ZJ2145",
+              "label": {
+                "en": "AK001-ZJ2145"
+              }
+            },
+            {
+              "id": "AK001-ZJ2147",
+              "label": {
+                "en": "AK001-ZJ2147"
+              }
+            },
+            {
+              "id": "AK001-ZJ2148",
+              "label": {
+                "en": "AK001-ZJ2148"
+              }
+            },
+            {
+              "id": "HF-LPB100",
+              "label": {
+                "en": "HF-LPB100"
+              }
+            },
+            {
+              "id": "HF-LPB100-ZJ002",
+              "label": {
+                "en": "HF-LPB100-ZJ002"
+              }
+            },
+            {
+              "id": "HF-LPB100-ZJ200",
+              "label": {
+                "en": "HF-LPB100-ZJ200"
+              }
+            },
+            {
+              "id": "other",
+              "label": {
+                "en": "other"
+              }
+            }
+          ],
           "value": ""
         },
         {

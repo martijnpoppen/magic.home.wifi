@@ -8,7 +8,6 @@ const discovery = new Discovery();
 const { typeCapabilityMap } = require('../../constants');
 
 const devices = {};
-const options = { ack: Control.ackMask(0), connect_timeout: 8000 };
 let runningDiscovery = false;
 
 
@@ -21,10 +20,12 @@ class MagicHomeDevice extends Homey.Device {
     await this.checkCapabilities();
     await this.setCapabilityListeners();
 
+    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white') };
+
     let id = this.getData().id;
     devices[id] = {};
     devices[id].data = this.getData();
-    devices[id].light = new Control(this.getSetting('address'), options);
+    devices[id].light = new Control(this.getSetting('address'), this.options);
 
     console.log('control', devices[id].light);
     this.retreivePollValues(id);
@@ -37,7 +38,7 @@ class MagicHomeDevice extends Homey.Device {
 
   async onSettings({ newSettings }) {
     const id = this.getData().id;
-    devices[id].light = new Control(newSettings.address, options);
+    devices[id].light = new Control(newSettings.address, this.options);
   }
 
   async setCapabilityListeners() {
@@ -249,7 +250,7 @@ class MagicHomeDevice extends Homey.Device {
     this.pingInterval = setInterval(async () => {
       try {
         this.log('Device is not reachable, pinging every 63 seconds to see if it comes online again.');
-        devices[id].light = new Control(this.getSetting('address'), options);
+        devices[id].light = new Control(this.getSetting('address'), this.options);
         let result = await devices[id].light.queryState();
         this.setAvailable();
         
@@ -265,7 +266,7 @@ class MagicHomeDevice extends Homey.Device {
             Object.keys(magichomes).forEach(function(key) {
               if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
                 this.setSettings({address: discover[i].address, model: discover[i].model});
-                devices[this.getData().id].light = new Control(discover[i].address, options);
+                devices[this.getData().id].light = new Control(discover[i].address, this.options);
               }
             });
           }

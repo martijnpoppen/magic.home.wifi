@@ -49,5 +49,17 @@
   },
   "3.3.5": {
     "en": "NEW: add AK001-ZJ2148"
+  },
+  "3.3.6": {
+    "en": "FIX AK001-ZJ2148"
+  },
+  "3.3.7": {
+    "en": "FIX: capabilities on startup"
+  },
+  "3.3.8": {
+    "en": "FIX AK001-ZJ2148"
+  },
+  "3.3.9": {
+    "en": "NEW: add HF-LPB100-0"
   }
 }
