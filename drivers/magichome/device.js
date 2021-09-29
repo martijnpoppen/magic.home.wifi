@@ -34,6 +34,7 @@ class MagicHomeDevice extends Homey.Device {
 
   async onDeleted() {
     clearInterval(this.pollingInterval);
+    clearInterval(this.pingInterval);
   }
 
   async onSettings({ newSettings }) {
