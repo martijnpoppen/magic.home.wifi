@@ -1,6 +1,6 @@
 {
   "id": "magic.home.wifi",
-  "version": "3.3.10",
+  "version": "3.3.11",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#5bc2f1",
