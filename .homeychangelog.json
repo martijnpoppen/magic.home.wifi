@@ -67,5 +67,14 @@
   },
   "3.3.11": {
     "en": "FIX: onDeleted pingInterval"
+  },
+  "3.3.12": {
+    "en": "Add light mode for SPI controllers"
+  },
+  "3.3.13": {
+    "en": "Add light mode for SPI controllers"
+  },
+  "3.3.14": {
+    "en": "FIX: remove addressable from AK001-ZJ200 & AK001-ZJ210"
   }
 }
