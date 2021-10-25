@@ -12,14 +12,6 @@ is-plain-obj@^1.1:
   resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
   integrity sha1-caUMhCnfync8kqOQpKA7OfzVHT4=
 
-magic-home@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/magic-home/-/magic-home-2.7.0.tgz#7ac1a1a43814e13e8122d155bdb645df56b7d06e"
-  integrity sha512-j5glNkjPQBhCAD+hLkcCAKicLvsF5c4+lD9vc5z25621LG5ZYXMwYbFrXWqjQKHmaZaaHZIqf3W4pzB57qeTiw==
-  dependencies:
-    commander "^2.20.0"
-    merge-options "^1.0.1"
-
 merge-options@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-options/-/merge-options-1.0.1.tgz#2a64b24457becd4e4dc608283247e94ce589aa32"

@@ -3,7 +3,7 @@
 const Homey = require('homey');
 const { sleep } = require('../../lib/helpers');
 const tinycolor = require("tinycolor2");
-const { Control, Discovery } = require('magic-home');
+const { Control, Discovery } = require('../../lib/magic-home');
 const discovery = new Discovery();
 const { typeCapabilityMap } = require('../../constants');
 
@@ -20,7 +20,7 @@ class MagicHomeDevice extends Homey.Device {
     await this.checkCapabilities();
     await this.setCapabilityListeners();
 
-    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white') };
+    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white'), addressable: this.hasCapability('addressable') };
 
     let id = this.getData().id;
     devices[id] = {};
