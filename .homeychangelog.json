@@ -82,5 +82,8 @@
   },
   "3.3.16": {
     "en": "FIX: addressable with custom buffer"
+  },
+  "3.3.17": {
+    "en": "Branding"
   }
 }
