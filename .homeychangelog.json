@@ -79,5 +79,8 @@
   },
   "3.3.15": {
     "en": "REVERT: re-add addressable for AK001-ZJ200"
+  },
+  "3.3.16": {
+    "en": "FIX: addressable with custom buffer"
   }
 }
