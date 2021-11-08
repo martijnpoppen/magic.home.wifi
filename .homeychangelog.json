@@ -103,5 +103,8 @@
   },
   "3.3.23": {
     "en": "FIX: various devices broken after update"
+  },
+  "3.3.24": {
+    "en": "FIX: various devices broken after update"
   }
 }
