@@ -97,5 +97,11 @@
   },
   "3.3.21": {
     "en": "FIX: SPI effects"
+  },
+  "3.3.22": {
+    "en": "FIX: various devices broken after update"
+  },
+  "3.3.23": {
+    "en": "FIX: various devices broken after update"
   }
 }
