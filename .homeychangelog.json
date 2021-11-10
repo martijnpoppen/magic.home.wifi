@@ -118,5 +118,8 @@
   },
   "3.3.28": {
     "en": "FIX: library to support AK001-ZJ200 again"
+  },
+  "3.3.30": {
+    "en": "FIX: adapt library to support both types of Color commands"
   }
 }

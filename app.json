@@ -1,6 +1,6 @@
 {
   "id": "magic.home.wifi",
-  "version": "3.3.28",
+  "version": "3.3.30",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -106,6 +106,15 @@
       },
       "getable": false,
       "setable": false
+    },
+    "custom_HF": {
+      "type": "boolean",
+      "title": {
+        "en": "custom_HF",
+        "nl": "custom_HF"
+      },
+      "getable": false,
+      "setable": false
     }
   },
   "drivers": [
@@ -129,7 +138,8 @@
         "light_saturation",
         "light_mode",
         "cold_white",
-        "addressable"
+        "addressable",
+        "custom_HF"
       ],
       "pair": [
         {
