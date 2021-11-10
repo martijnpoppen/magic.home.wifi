@@ -109,5 +109,14 @@
   },
   "3.3.25": {
     "en": "FIX: ZJ2104"
+  },
+  "3.3.26": {
+    "en": "FIX: issue after latest update"
+  },
+  "3.3.27": {
+    "en": "FIX: adapt library to support both types of Color commands"
+  },
+  "3.3.28": {
+    "en": "FIX: library to support AK001-ZJ200 again"
   }
 }
