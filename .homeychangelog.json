@@ -127,5 +127,8 @@
   },
   "3.3.32": {
     "en": "NEW: add custom addressable function to support old and new addressable ledstrips"
+  },
+  "3.3.33": {
+    "en": "FIX: ak001-zj210"
   }
 }
