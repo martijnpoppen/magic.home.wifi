@@ -1,6 +1,6 @@
 {
   "id": "magic.home.wifi",
-  "version": "3.3.31",
+  "version": "3.3.32",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -117,14 +117,14 @@
       "setable": false
     },
     "custom_SPI": {
-        "type": "boolean",
-        "title": {
-          "en": "custom_SPI",
-          "nl": "custom_SPI"
-        },
-        "getable": false,
-        "setable": false
-      }
+      "type": "boolean",
+      "title": {
+        "en": "custom_SPI",
+        "nl": "custom_SPI"
+      },
+      "getable": false,
+      "setable": false
+    }
   },
   "drivers": [
     {
