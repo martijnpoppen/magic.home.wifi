@@ -115,7 +115,16 @@
       },
       "getable": false,
       "setable": false
-    }
+    },
+    "custom_SPI": {
+        "type": "boolean",
+        "title": {
+          "en": "custom_SPI",
+          "nl": "custom_SPI"
+        },
+        "getable": false,
+        "setable": false
+      }
   },
   "drivers": [
     {
@@ -139,7 +148,8 @@
         "light_mode",
         "cold_white",
         "addressable",
-        "custom_HF"
+        "custom_HF",
+        "custom_SPI"
       ],
       "pair": [
         {

@@ -20,7 +20,7 @@ class MagicHomeDevice extends Homey.Device {
     await this.checkCapabilities();
     await this.setCapabilityListeners();
 
-    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white'), addressable: this.hasCapability('addressable') };
+    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white'), addressable: this.hasCapability('addressable'), custom_SPI: this.hasCapability('custom_SPI'), custom_HF: this.hasCapability('custom_HF') };
 
     let id = this.getData().id;
     devices[id] = {};
