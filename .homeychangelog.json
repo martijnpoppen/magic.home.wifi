@@ -130,5 +130,8 @@
   },
   "3.3.33": {
     "en": "FIX: ak001-zj210"
+  },
+  "3.3.34": {
+    "en": "FIX: add exception for SPI effects. Support ZJ210 and ZJ2148"
   }
 }
