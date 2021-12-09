@@ -133,5 +133,8 @@
   },
   "3.3.34": {
     "en": "FIX: add exception for SPI effects. Support ZJ210 and ZJ2148"
+  },
+  "3.3.35": {
+    "en": " NEW: add custom buffer for AK001-ZJ200 and AK001-ZJ2146"
   }
 }
