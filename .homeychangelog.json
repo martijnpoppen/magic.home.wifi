@@ -136,5 +136,8 @@
   },
   "3.3.35": {
     "en": " NEW: add custom buffer for AK001-ZJ200 and AK001-ZJ2146"
+  },
+  "3.4.0": {
+    "en": "NEW: add custom buffer for AK001-ZJ200 and AK001-ZJ2146"
   }
 }
