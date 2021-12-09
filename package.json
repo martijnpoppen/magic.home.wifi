@@ -4,6 +4,7 @@
   "description": "Control LED strips through the Magic Home LED controller",
   "main": "app.js",
   "scripts": {
+    "prepare": "if [ ! -d \"./lib/magic-home\" ]; then git clone https://github.com/martijnpoppen/node-magichome.git ./lib/magic-home && cd ./lib/magic-home && yarn --production=true && rm -rf ./examples && cd ..; fi;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,8 +24,6 @@
   },
   "homepage": "https://github.com/martijnpoppen/magic.home.wifi#readme",
   "dependencies": {
-    "commander": "^2.20.0",
-    "merge-options": "^1.0.1",
     "tinycolor2": "^1.4.2"
   }
 }

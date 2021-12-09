@@ -47,9 +47,9 @@
   },
   "category": "lights",
   "images": {
-    "small": "./assets/images/small.jpg",
-    "large": "./assets/images/large.jpg",
-    "xlarge": "./assets/images/xlarge.jpg"
+    "small": "./assets/images/small.png",
+    "large": "./assets/images/large.png",
+    "xlarge": "./assets/images/xlarge.png"
   },
   "author": {
     "name": "Martijn Poppen",
@@ -116,6 +116,15 @@
       "getable": false,
       "setable": false
     },
+    "custom_ZJ": {
+        "type": "boolean",
+        "title": {
+          "en": "custom_ZJ",
+          "nl": "custom_ZJ"
+        },
+        "getable": false,
+        "setable": false
+      },
     "custom_SPI": {
       "type": "boolean",
       "title": {
@@ -149,6 +158,7 @@
         "cold_white",
         "addressable",
         "custom_HF",
+        "custom_ZJ",
         "custom_SPI"
       ],
       "pair": [
@@ -195,6 +205,12 @@
               }
             },
             {
+                "id": "AK001-ZJ200-2",
+                "label": {
+                  "en": "AK001-ZJ200-2"
+                }
+              },
+            {
               "id": "AK001-ZJ210",
               "label": {
                 "en": "AK001-ZJ210"
@@ -218,6 +234,12 @@
                 "en": "AK001-ZJ2145"
               }
             },
+            {
+                "id": "AK001-ZJ2146",
+                "label": {
+                  "en": "AK001-ZJ2146"
+                }
+              },
             {
               "id": "AK001-ZJ2147",
               "label": {

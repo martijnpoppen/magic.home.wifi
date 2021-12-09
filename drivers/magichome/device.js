@@ -14,13 +14,12 @@ let runningDiscovery = false;
 class MagicHomeDevice extends Homey.Device {
 
   async onInit() {
-    this.homey.app.log('[Device] - init =>', this.getName());
+    this.homey.app.log('[Device] - init =>', this.getName(), this.getSetting('model'));
     this.setUnavailable(`Initializing ${this.getName()}`);
 
     await this.checkCapabilities();
     await this.setCapabilityListeners();
-
-    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white'), addressable: this.hasCapability('addressable'), custom_SPI: this.hasCapability('custom_SPI'), custom_HF: this.hasCapability('custom_HF') };
+    await this.setOptions();
 
     let id = this.getData().id;
     devices[id] = {};
@@ -28,8 +27,12 @@ class MagicHomeDevice extends Homey.Device {
     devices[id].light = new Control(this.getSetting('address'), this.options);
 
     console.log('control', devices[id].light);
-    this.retreivePollValues(id);
+    this.retreivePollValues(id, true);
     this.pollDevice(id, 'onInit');
+  }
+
+  async setOptions() {
+    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white'), addressable: this.hasCapability('addressable'), custom_SPI: this.hasCapability('custom_SPI'), custom_HF: this.hasCapability('custom_HF'), custom_ZJ: this.hasCapability('custom_ZJ') };
   }
 
   async onDeleted() {
@@ -37,8 +40,15 @@ class MagicHomeDevice extends Homey.Device {
     clearInterval(this.pingInterval);
   }
 
-  async onSettings({ newSettings }) {
+  async onSettings({ newSettings, changedKeys }) {
     const id = this.getData().id;
+
+    if(changedKeys.includes('model')) {
+        this.resetPoll();
+        await this.checkCapabilities(newSettings.model);
+        await this.setOptions();
+    }
+
     devices[id].light = new Control(newSettings.address, this.options);
   }
 
@@ -111,16 +121,15 @@ class MagicHomeDevice extends Homey.Device {
     }
   }
 
-  async checkCapabilities() {
-      const model = this.getSetting('model');
+  async checkCapabilities(type) {
+      const model = type || this.getSetting('model');
       const driverCapabilities = typeCapabilityMap[model];
       
       const deviceCapabilities = this.getCapabilities();
 
-      this.homey.app.log(`[Device] ${this.getName()} - Found capabilities =>`, deviceCapabilities);
-      this.homey.app.log(`[Device] ${this.getName()} - Driver capabilities =>`, driverCapabilities);
-      
-      if(deviceCapabilities.length !== driverCapabilities.length) {      
+      this.homey.app.log(`[Device] ${this.getName()} - 1. Device / Driver capabilities =>`, deviceCapabilities, driverCapabilities);
+
+      if(deviceCapabilities.length !== driverCapabilities.length || deviceCapabilities.filter(x => !driverCapabilities.includes(x)).length) {      
           await this.updateCapabilities(driverCapabilities, deviceCapabilities);
       }
 
@@ -128,7 +137,7 @@ class MagicHomeDevice extends Homey.Device {
   }
 
   async updateCapabilities(driverCapabilities, deviceCapabilities) {
-      this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, driverCapabilities);
+      this.homey.app.log(`[Device] ${this.getName()} - 2. Add new capabilities =>`, driverCapabilities);
       try {
           deviceCapabilities.forEach(c => {
             this.removeCapability(c);
@@ -173,10 +182,12 @@ class MagicHomeDevice extends Homey.Device {
     }, 15000);
   }
 
-  async retreivePollValues(id) {
+  async retreivePollValues(id, log) {
     try {
         let result = await devices[id].light.queryState();
-        this.homey.app.log(`[Device] - ${this.getName()} - polling`, result);
+        if(log) { 
+            this.homey.app.log(`[Device] - ${this.getName()} - polling`, result);
+        }
 
         let color = tinycolor({ r: result.color.red, g: result.color.green, b: result.color.blue });
         let hsv = color.toHsv();
