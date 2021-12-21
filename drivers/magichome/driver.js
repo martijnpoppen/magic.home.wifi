@@ -23,6 +23,8 @@ class MagicHomeDriver extends Homey.Driver {
           result[i].model = 'other';
         }
 
+        this.homey.app.log(`[Driver] - Discovery =>`, result);
+
         devices.push({
           name: name,
           data: {
