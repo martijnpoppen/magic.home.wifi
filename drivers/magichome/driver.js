@@ -9,9 +9,10 @@ const { typeCapabilityMap } = require('../../constants');
 class MagicHomeDriver extends Homey.Driver {
   async onPairListDevices () {
     let devices = [];
-    await discovery.scan(3000).then(result => {
-      this.log(discovery.clients.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i));
-      for (let i in discovery.clients.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)) {
+    await discovery.scan(5000).then(result => {
+      this.homey.app.log(`[Driver] - Discovery =>`, result);
+
+      for (let i in discovery.clients) {
         if (result[i].model == 'AK001-ZJ100' || result[i].model == 'AK001-ZJ2101') {
           var name = 'RGB controller '+ result[i].model +' ('+ result[i].address +')';
         } else if (result[i].model == 'AK001-ZJ210' || result[i].model == 'AK001-ZJ2148') {
@@ -22,8 +23,6 @@ class MagicHomeDriver extends Homey.Driver {
           var name = result[i].model +' ('+ result[i].address +')';
           result[i].model = 'other';
         }
-
-        this.homey.app.log(`[Driver] - Discovery =>`, result);
 
         devices.push({
           name: name,
@@ -39,6 +38,7 @@ class MagicHomeDriver extends Homey.Driver {
       }
     })
     .catch((err) => {
+      this.homey.app.log(`[Driver] - Discovery err =>`, err);
       return reject(err);
     });
 
