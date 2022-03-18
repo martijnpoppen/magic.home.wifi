@@ -145,5 +145,8 @@
   },
   "3.4.2": {
     "en": "FIX: pairing discovery"
+  },
+  "3.4.3": {
+    "en": "FIX: app crash error"
   }
 }
