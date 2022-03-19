@@ -133,7 +133,16 @@
       },
       "getable": false,
       "setable": false
-    }
+    },
+    "custom_CCT": {
+        "type": "boolean",
+        "title": {
+          "en": "custom_CCT",
+          "nl": "custom_CCT"
+        },
+        "getable": false,
+        "setable": false
+      }
   },
   "drivers": [
     {

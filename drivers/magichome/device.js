@@ -32,7 +32,7 @@ class MagicHomeDevice extends Homey.Device {
   }
 
   async setOptions() {
-    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white'), addressable: this.hasCapability('addressable'), custom_SPI: this.hasCapability('custom_SPI'), custom_HF: this.hasCapability('custom_HF'), custom_ZJ: this.hasCapability('custom_ZJ') };
+    this.options = { ack: Control.ackMask(0), connect_timeout: 8000, cold_white_support: this.hasCapability('cold_white'), addressable: this.hasCapability('addressable'), custom_SPI: this.hasCapability('custom_SPI'), custom_HF: this.hasCapability('custom_HF'), custom_ZJ: this.hasCapability('custom_ZJ'), custom_CCT: this.hasCapability('custom_CCT') };
   }
 
   async onDeleted() {
@@ -275,7 +275,7 @@ class MagicHomeDevice extends Homey.Device {
           const discover = await discovery.scan(3000);
           const magichomes = await this.homey.drivers.getDriver('magichome').getDevices();
           for (let i in discover) {
-            Object.keys(magichomes).forEach(function(key) {
+            Object.keys(magichomes).forEach(() => {
               if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
                 this.setSettings({address: discover[i].address, model: discover[i].model});
                 devices[this.getData().id].light = new Control(discover[i].address, this.options);
