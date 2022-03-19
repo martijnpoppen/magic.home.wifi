@@ -1,6 +1,6 @@
 {
   "id": "magic.home.wifi",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -135,14 +135,14 @@
       "setable": false
     },
     "custom_CCT": {
-        "type": "boolean",
-        "title": {
-          "en": "custom_CCT",
-          "nl": "custom_CCT"
-        },
-        "getable": false,
-        "setable": false
-      }
+      "type": "boolean",
+      "title": {
+        "en": "custom_CCT",
+        "nl": "custom_CCT"
+      },
+      "getable": false,
+      "setable": false
+    }
   },
   "drivers": [
     {
