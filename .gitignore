@@ -92,3 +92,7 @@ typings/
 package-lock.json
 lib/magic-home
 build/
+
+
+# Added by Homey CLI
+/.homeybuild/
