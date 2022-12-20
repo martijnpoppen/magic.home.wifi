@@ -77,7 +77,10 @@
   },
   "contributing": {
     "donate": {
-      "paypal": {
+"paypal": {
+        "username": "martijnpoppen"
+      },
+      "bunq": {
         "username": "martijnpoppen"
       }
     }

@@ -264,6 +264,7 @@ class MagicHomeDevice extends Homey.Device {
         this.log('Device is not reachable, pinging every 63 seconds to see if it comes online again.');
         devices[id].light = new Control(this.getSetting('address'), this.options);
         let result = await devices[id].light.queryState();
+        console.log('result', result);
         this.setAvailable();
         
         clearInterval(this.pollingInterval);
