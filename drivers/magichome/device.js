@@ -52,6 +52,10 @@ class MagicHomeDevice extends Homey.Device {
     devices[id].light = new Control(newSettings.address, this.options);
   }
 
+  async getDevices() {
+    return devices;
+  }
+
   async setCapabilityListeners() {
     // LISTENERS FOR UPDATING CAPABILITIES
     this.registerCapabilityListener('onoff', async (value) => {
