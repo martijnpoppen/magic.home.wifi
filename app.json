@@ -1,6 +1,6 @@
 {
   "id": "magic.home.wifi",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -77,7 +77,7 @@
   },
   "contributing": {
     "donate": {
-"paypal": {
+      "paypal": {
         "username": "martijnpoppen"
       },
       "bunq": {
