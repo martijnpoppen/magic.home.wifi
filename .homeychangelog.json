@@ -157,5 +157,8 @@
   },
   "3.4.6": {
     "en": "FIX: set Addressable effects from FlowCards"
+  },
+  "3.5.0": {
+    "en": "NEW: add AK001-ZJ21410"
   }
 }
