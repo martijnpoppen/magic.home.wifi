@@ -9,6 +9,7 @@ exports.typeCapabilityMap = {
     'AK001-ZJ2146'    : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode', 'cold_white' ],
     'AK001-ZJ2147'    : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode' ],
     'AK001-ZJ2148'    : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'addressable', 'custom_SPI' ],
+    'AK001-ZJ21410'   : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode', 'custom_HF' ],
     'HF-LPB100-0'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode', 'custom_HF' ],
     'HF-LPB100-1'     : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode', 'custom_HF' ],
     'HF-LPB100'       : [ 'onoff', 'dim', 'light_hue', 'light_saturation', 'light_temperature', 'light_mode', 'custom_HF' ],
