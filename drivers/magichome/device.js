@@ -3,13 +3,12 @@
 const Homey = require('homey');
 const { sleep } = require('../../lib/helpers');
 const tinycolor = require("tinycolor2");
-const { Control, Discovery } = require('../../lib/magic-home');
+const { Control, ControlAddressable, Discovery } = require('../../lib/magic-home');
 const discovery = new Discovery();
 const { typeCapabilityMap } = require('../../constants');
 
 const devices = {};
 let runningDiscovery = false;
-
 
 class MagicHomeDevice extends Homey.Device {
 
@@ -24,7 +23,12 @@ class MagicHomeDevice extends Homey.Device {
     let id = this.getData().id;
     devices[id] = {};
     devices[id].data = this.getData();
-    devices[id].light = new Control(this.getSetting('address'), this.options);
+    
+    if(this.hasCapability('addressable')) {
+        devices[id].light = new ControlAddressable(this.getSetting('address'), this.options);
+    } else {
+        devices[id].light = new Control(this.getSetting('address'), this.options);
+    }
 
     console.log('control', devices[id].light);
     this.retreivePollValues(id, true);

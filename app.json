@@ -101,6 +101,15 @@
       "getable": false,
       "setable": false
     },
+    "n_addressable": {
+      "type": "boolean",
+      "title": {
+        "en": "NON Addressable controller",
+        "nl": "NON Addressable controller"
+      },
+      "getable": false,
+      "setable": false
+    },
     "cold_white": {
       "type": "boolean",
       "title": {
@@ -115,33 +124,6 @@
       "title": {
         "en": "custom_HF",
         "nl": "custom_HF"
-      },
-      "getable": false,
-      "setable": false
-    },
-    "custom_ZJ": {
-      "type": "boolean",
-      "title": {
-        "en": "custom_ZJ",
-        "nl": "custom_ZJ"
-      },
-      "getable": false,
-      "setable": false
-    },
-    "custom_SPI": {
-      "type": "boolean",
-      "title": {
-        "en": "custom_SPI",
-        "nl": "custom_SPI"
-      },
-      "getable": false,
-      "setable": false
-    },
-    "custom_CCT": {
-      "type": "boolean",
-      "title": {
-        "en": "custom_CCT",
-        "nl": "custom_CCT"
       },
       "getable": false,
       "setable": false
@@ -169,9 +151,7 @@
         "light_mode",
         "cold_white",
         "addressable",
-        "custom_HF",
-        "custom_ZJ",
-        "custom_SPI"
+        "custom_HF"
       ],
       "pair": [
         {
@@ -522,23 +502,26 @@
       {
         "id": "addressableEffect",
         "title": {
-          "en": "Select Effect",
-          "nl": "Selecteer effect"
+          "en": "Select Effect (RBM)",
+          "nl": "Selecteer effect (RBM)"
         },
         "titleFormatted": {
           "en": "Set Effect to [[effect]] with speed [[speed]]",
           "nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
+        },
+        "hint": {
+          "en": "This is the same as RBM in the Magic Home app"
         },
         "args": [
           {
             "name": "effect",
             "type": "number",
             "min": 1,
-            "max": 300,
+            "max": 100,
             "step": 1,
             "placeholder": {
-              "en": "Effect Number (1 - 300)",
-              "nl": "Effect nummer (1 - 300)"
+              "en": "Effect Number (1 - 100)",
+              "nl": "Effect nummer (1 - 100)"
             }
           },
           {
@@ -662,7 +645,7 @@
               "en": "Select Magic Home Controller",
               "nl": "Selecteer Magic Home Controller"
             },
-            "filter": "driver_id=magichome"
+            "filter": "driver_id=magichome&capabilities=n_addressable"
           }
         ]
       }
