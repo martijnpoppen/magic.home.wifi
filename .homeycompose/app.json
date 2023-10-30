@@ -1,0 +1,148 @@
+{
+  "id": "magic.home.wifi",
+  "version": "3.6.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "brandColor": "#000000",
+  "dependencies": {
+    "net": "*"
+  },
+  "name": {
+    "en": "Magic Home WiFi LED",
+    "nl": "Magic Home WiFi LED"
+  },
+  "description": {
+    "en": "Control LED strips",
+    "nl": "Bestuur LED strips"
+  },
+  "tags": {
+    "en": [
+      "magic home",
+      "LED",
+      "controller",
+      "ESP8266",
+      "LED Strips",
+      "Hue",
+      "Saturation",
+      "Color",
+      "RGB",
+      "RGBWW",
+      "RGBW",
+      "Infrared",
+      "Aislan",
+      "Allkeys",
+      "Apobob",
+      "Arilux",
+      "Aubric",
+      "BERENNIS",
+      "BHGY",
+      "Brizled",
+      "Bunpeon",
+      "Chichin",
+      "Comoyda",
+      "dalattin",
+      "DALS RGBW",
+      "Armacost Lighting",
+      "MyLED",
+      "DARKPROOF",
+      "Daybetter",
+      "deerdance",
+      "DIAMOND",
+      "Diode Dynamics",
+      "Flux LED",
+      "FVTLED",
+      "GEV LIG",
+      "GEYUEYA Home",
+      "GIDEALED",
+      "GIDERWEL",
+      "GMK",
+      "Goldwin",
+      "Hakkatronics",
+      "HaoDeng",
+      "Heissner",
+      "HDDFL",
+      "illume RGBW",
+      "Illumination FX",
+      "INDARUN",
+      "iNextStation",
+      "Koopower",
+      "Lallumer",
+      "LEDENET",
+      "LiteWRX",
+      "Lytworx",
+      "Magic Ambient",
+      "Magic Home",
+      "Magic Hue",
+      "Magic Light",
+      "Miheal",
+      "Mowelai",
+      "Nexlux",
+      "OBSESS",
+      "Offdarks",
+      "PH LED",
+      "PHOPOLLO",
+      "Pin Stadium Pinball Lights",
+      "POV Lamp",
+      "PROTEAM Europe Pool Lights",
+      "Rimikon",
+      "SMFX",
+      "Sumaote",
+      "Superhome",
+      "SurpLife",
+      "SuperlightingLED",
+      "Svipear",
+      "Tommox",
+      "Vanance",
+      "Yetaida",
+      "YHW",
+      "Zengge",
+      "Zombber"
+    ]
+  },
+  "category": "lights",
+  "images": {
+    "small": "./assets/images/small.png",
+    "large": "./assets/images/large.png",
+    "xlarge": "./assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Martijn Poppen",
+    "email": "magichome@martijnpoppen.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Martijn Poppen",
+        "email": "magichome@martijnpoppen.nl"
+      },
+      {
+        "name": "Jelger Haanstra",
+        "email": "homey@solidewebservices.com"
+      }
+    ],
+    "translators": [
+      {
+        "name": "🇬🇧 Martijn Poppen"
+      },
+      {
+        "name": "🇳🇱 Martijn Poppen"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "martijnpoppen"
+      },
+      "bunq": {
+        "username": "martijnpoppen"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://community.athom.com/t/app-magic-home-led-controllers/1750"
+  },
+  "source": "https://github.com/martijnpoppen/magic.home.wifi",
+  "homeyCommunityTopicId": 1750,
+  "support": "https://community.athom.com/t/app-magic-home-led-controllers/1750"
+}

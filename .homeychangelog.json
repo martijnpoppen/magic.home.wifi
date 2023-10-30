@@ -160,5 +160,8 @@
   },
   "3.5.0": {
     "en": "NEW: add AK001-ZJ21410"
+  },
+  "3.6.0": {
+    "en": "NEW: update library | NEW: add addressable features"
   }
 }

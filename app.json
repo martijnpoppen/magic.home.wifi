@@ -1,6 +1,7 @@
 {
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "magic.home.wifi",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -28,21 +29,75 @@
       "RGB",
       "RGBWW",
       "RGBW",
-      "Infrared"
-    ],
-    "nl": [
-      "magic home",
-      "LED",
-      "controller",
-      "ESP8266",
-      "LED Strips",
-      "Hue",
-      "Saturation",
-      "Color",
-      "RGB",
-      "RGBWW",
-      "RGBW",
-      "Infrared"
+      "Infrared",
+      "Aislan",
+      "Allkeys",
+      "Apobob",
+      "Arilux",
+      "Aubric",
+      "BERENNIS",
+      "BHGY",
+      "Brizled",
+      "Bunpeon",
+      "Chichin",
+      "Comoyda",
+      "dalattin",
+      "DALS RGBW",
+      "Armacost Lighting",
+      "MyLED",
+      "DARKPROOF",
+      "Daybetter",
+      "deerdance",
+      "DIAMOND",
+      "Diode Dynamics",
+      "Flux LED",
+      "FVTLED",
+      "GEV LIG",
+      "GEYUEYA Home",
+      "GIDEALED",
+      "GIDERWEL",
+      "GMK",
+      "Goldwin",
+      "Hakkatronics",
+      "HaoDeng",
+      "Heissner",
+      "HDDFL",
+      "illume RGBW",
+      "Illumination FX",
+      "INDARUN",
+      "iNextStation",
+      "Koopower",
+      "Lallumer",
+      "LEDENET",
+      "LiteWRX",
+      "Lytworx",
+      "Magic Ambient",
+      "Magic Home",
+      "Magic Hue",
+      "Magic Light",
+      "Miheal",
+      "Mowelai",
+      "Nexlux",
+      "OBSESS",
+      "Offdarks",
+      "PH LED",
+      "PHOPOLLO",
+      "Pin Stadium Pinball Lights",
+      "POV Lamp",
+      "PROTEAM Europe Pool Lights",
+      "Rimikon",
+      "SMFX",
+      "Sumaote",
+      "Superhome",
+      "SurpLife",
+      "SuperlightingLED",
+      "Svipear",
+      "Tommox",
+      "Vanance",
+      "Yetaida",
+      "YHW",
+      "Zengge",
+      "Zombber"
     ]
   },
   "category": "lights",
@@ -91,200 +146,219 @@
   "source": "https://github.com/martijnpoppen/magic.home.wifi",
   "homeyCommunityTopicId": 1750,
   "support": "https://community.athom.com/t/app-magic-home-led-controllers/1750",
-  "capabilities": {
-    "addressable": {
-      "type": "boolean",
-      "title": {
-        "en": "Addressable controller",
-        "nl": "Addressable controller"
-      },
-      "getable": false,
-      "setable": false
-    },
-    "n_addressable": {
-      "type": "boolean",
-      "title": {
-        "en": "NON Addressable controller",
-        "nl": "NON Addressable controller"
-      },
-      "getable": false,
-      "setable": false
-    },
-    "cold_white": {
-      "type": "boolean",
-      "title": {
-        "en": "Cold White controller",
-        "nl": "Cold White controller"
-      },
-      "getable": false,
-      "setable": false
-    },
-    "custom_HF": {
-      "type": "boolean",
-      "title": {
-        "en": "custom_HF",
-        "nl": "custom_HF"
-      },
-      "getable": false,
-      "setable": false
-    }
-  },
-  "drivers": [
-    {
-      "id": "magichome",
-      "name": {
-        "en": "Magic Home LED Controller",
-        "nl": "Magic Home LED controller"
-      },
-      "images": {
-        "small": "drivers/magichome/assets/images/small.jpg",
-        "large": "drivers/magichome/assets/images/large.jpg",
-        "xlarge": "drivers/magichome/assets/images/xlarge.jpg"
-      },
-      "class": "light",
-      "capabilities": [
-        "onoff",
-        "light_temperature",
-        "light_hue",
-        "dim",
-        "light_saturation",
-        "light_mode",
-        "cold_white",
-        "addressable",
-        "custom_HF"
-      ],
-      "pair": [
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_magichome"
-          }
-        },
-        {
-          "id": "add_magichome",
-          "template": "add_devices"
-        }
-      ],
-      "settings": [
-        {
-          "id": "address",
-          "type": "text",
-          "label": {
-            "en": "Address",
-            "nl": "Address"
-          },
-          "value": ""
-        },
-        {
-          "id": "model",
-          "type": "dropdown",
-          "label": {
-            "en": "Model",
-            "nl": "Model"
-          },
-          "values": [
-            {
-              "id": "AK001-ZJ100",
-              "label": {
-                "en": "AK001-ZJ100"
-              }
-            },
-            {
-              "id": "AK001-ZJ200",
-              "label": {
-                "en": "AK001-ZJ200"
-              }
-            },
-            {
-              "id": "AK001-ZJ200-2",
-              "label": {
-                "en": "AK001-ZJ200-2"
-              }
-            },
-            {
-              "id": "AK001-ZJ210",
-              "label": {
-                "en": "AK001-ZJ210"
-              }
-            },
-            {
-              "id": "AK001-ZJ2101",
-              "label": {
-                "en": "AK001-ZJ2101"
-              }
-            },
-            {
-              "id": "AK001-ZJ2104",
-              "label": {
-                "en": "AK001-ZJ2104"
-              }
-            },
-            {
-              "id": "AK001-ZJ2145",
-              "label": {
-                "en": "AK001-ZJ2145"
-              }
-            },
-            {
-              "id": "AK001-ZJ2146",
-              "label": {
-                "en": "AK001-ZJ2146"
-              }
-            },
-            {
-              "id": "AK001-ZJ2147",
-              "label": {
-                "en": "AK001-ZJ2147"
-              }
-            },
-            {
-              "id": "AK001-ZJ2148",
-              "label": {
-                "en": "AK001-ZJ2148"
-              }
-            },
-            {
-              "id": "HF-LPB100",
-              "label": {
-                "en": "HF-LPB100"
-              }
-            },
-            {
-              "id": "HF-LPB100-ZJ002",
-              "label": {
-                "en": "HF-LPB100-ZJ002"
-              }
-            },
-            {
-              "id": "HF-LPB100-ZJ200",
-              "label": {
-                "en": "HF-LPB100-ZJ200"
-              }
-            },
-            {
-              "id": "other",
-              "label": {
-                "en": "other"
-              }
-            }
-          ],
-          "value": ""
-        },
-        {
-          "id": "RGB_W",
-          "type": "checkbox",
-          "label": {
-            "en": "RGB+W (mixed)",
-            "nl": "RGB+W (mixed)"
-          },
-          "value": false
-        }
-      ]
-    }
-  ],
   "flow": {
     "actions": [
+      {
+        "id": "addressableCustomEffect",
+        "title": {
+          "en": "Create a custom effect",
+          "nl": "Maak een eigen effect"
+        },
+        "titleFormatted": {
+          "en": "Create a custom effect with colors [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], transition [[transition]] and speed [[speed]]",
+          "nl": "Maak een eigen effect met kleuren [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], overgang [[transition]] en snelheid [[speed]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "placeholder": {
+              "en": "Select device",
+              "nl": "Selecteer apparaat"
+            },
+            "filter": "driver_id=magichome|magichome_addressable&capabilities=not_implemented"
+          },
+          {
+            "type": "dropdown",
+            "name": "colors",
+            "values": [
+              {
+                "id": "2",
+                "label": {
+                  "en": "Use first 2 colors",
+                  "nl": "Gebruik eerste 2 kleuren"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Use first 3 colors",
+                  "nl": "Gebruik eerste 3 kleuren"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Use all 4 colors",
+                  "nl": "Gebruik alle 4 kleuren"
+                }
+              }
+            ]
+          },
+          {
+            "name": "color1",
+            "type": "color"
+          },
+          {
+            "name": "color2",
+            "type": "color"
+          },
+          {
+            "name": "color3",
+            "type": "color"
+          },
+          {
+            "name": "color4",
+            "type": "color"
+          },
+          {
+            "type": "dropdown",
+            "name": "transition",
+            "values": [
+              {
+                "id": "fade",
+                "label": {
+                  "en": "Fade",
+                  "nl": "Fade"
+                }
+              },
+              {
+                "id": "jump",
+                "label": {
+                  "en": "Jump",
+                  "nl": "Verspringen"
+                }
+              },
+              {
+                "id": "strobe",
+                "label": {
+                  "en": "Strobe",
+                  "nl": "Flitsen"
+                }
+              }
+            ]
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "Speed (0 - 100)",
+              "nl": "Snelheid (0 - 100)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "addressableEffect",
+        "title": {
+          "en": "Select Effect (RBM)",
+          "nl": "Selecteer effect (RBM)"
+        },
+        "titleFormatted": {
+          "en": "Set Effect to [[effect]] with speed [[speed]]",
+          "nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
+        },
+        "hint": {
+          "en": "This is the same as RBM in the Magic Home app"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "placeholder": {
+              "en": "Select device",
+              "nl": "Selecteer apparaat"
+            },
+            "filter": "driver_id=magichome|magichome_addressable&capabilities=addressable"
+          },
+          {
+            "name": "effect",
+            "type": "number",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "Effect Number (1 - 100)",
+              "nl": "Effect nummer (1 - 100)"
+            }
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "Speed (0 - 100)",
+              "nl": "Snelheid (0 - 100)"
+            }
+          }
+        ]
+      },
+      {
+        "id": "addressableFixedMode",
+        "title": {
+          "en": "Set Fixed mode"
+        },
+        "titleFormatted": {
+          "en": "Set Foreground color to [[foregroundColor]] and background color to [[backgroundColor]] use Effect [[effect]] with speed [[speed]]"
+        },
+        "hint": {
+          "en": "This is the same as Fixed mode in the Magic Home app"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "placeholder": {
+              "en": "Select device",
+              "nl": "Selecteer apparaat"
+            },
+            "filter": "driver_id=magichome|magichome_addressable&capabilities=addressable"
+          },
+          {
+            "name": "effect",
+            "type": "number",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "placeholder": {
+              "en": "Effect Number (1 - 10)",
+              "nl": "Effect nummer (1 - 10)"
+            }
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "Speed (0 - 100)",
+              "nl": "Snelheid (0 - 100)"
+            }
+          },
+          {
+            "name": "foregroundColor",
+            "label": {
+              "en": "Use all 4 colors",
+              "nl": "Gebruik alle 4 kleuren"
+            },
+            "type": "color"
+          },
+          {
+            "name": "backgroundColor",
+            "label": {
+              "en": "Use all 4 colors",
+              "nl": "Gebruik alle 4 kleuren"
+            },
+            "type": "color"
+          }
+        ]
+      },
       {
         "id": "colorAndWhite",
         "title": {
@@ -297,6 +371,15 @@
         },
         "args": [
           {
+            "type": "device",
+            "name": "device",
+            "placeholder": {
+              "en": "Select device",
+              "nl": "Selecteer apparaat"
+            },
+            "filter": "driver_id=magichome|magichome_addressable&capabilities=light_temperature"
+          },
+          {
             "name": "color",
             "type": "color"
           },
@@ -308,15 +391,109 @@
             "step": 1,
             "label": "%",
             "labelDecimals": 0
+          }
+        ]
+      },
+      {
+        "id": "customeffect",
+        "title": {
+          "en": "Create a custom effect",
+          "nl": "Maak een eigen effect"
+        },
+        "titleFormatted": {
+          "en": "Create a custom effect with colors [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], transition [[transition]] and speed [[speed]]",
+          "nl": "Maak een eigen effect met kleuren [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], overgang [[transition]] en snelheid [[speed]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "placeholder": {
+              "en": "Select device",
+              "nl": "Selecteer apparaat"
+            },
+            "filter": "driver_id=magichome|magichome_addressable&capabilities=not_addressable"
           },
           {
-            "name": "device",
-            "type": "device",
+            "type": "dropdown",
+            "name": "colors",
+            "values": [
+              {
+                "id": "2",
+                "label": {
+                  "en": "Use first 2 colors",
+                  "nl": "Gebruik eerste 2 kleuren"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Use first 3 colors",
+                  "nl": "Gebruik eerste 3 kleuren"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Use all 4 colors",
+                  "nl": "Gebruik alle 4 kleuren"
+                }
+              }
+            ]
+          },
+          {
+            "name": "color1",
+            "type": "color"
+          },
+          {
+            "name": "color2",
+            "type": "color"
+          },
+          {
+            "name": "color3",
+            "type": "color"
+          },
+          {
+            "name": "color4",
+            "type": "color"
+          },
+          {
+            "type": "dropdown",
+            "name": "transition",
+            "values": [
+              {
+                "id": "fade",
+                "label": {
+                  "en": "Fade",
+                  "nl": "Fade"
+                }
+              },
+              {
+                "id": "jump",
+                "label": {
+                  "en": "Jump",
+                  "nl": "Verspringen"
+                }
+              },
+              {
+                "id": "strobe",
+                "label": {
+                  "en": "Strobe",
+                  "nl": "Flitsen"
+                }
+              }
+            ]
+          },
+          {
+            "name": "speed",
+            "type": "number",
+            "min": 0,
+            "max": 100,
+            "step": 1,
             "placeholder": {
-              "en": "Select Magic Home Controller",
-              "nl": "Selecteer Magic Home Controller"
-            },
-            "filter": "driver_id=magichome&capabilities=light_temperature"
+              "en": "Speed (0 - 100)",
+              "nl": "Snelheid (0 - 100)"
+            }
           }
         ]
       },
@@ -331,6 +508,15 @@
           "nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
         },
         "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "placeholder": {
+              "en": "Select device",
+              "nl": "Selecteer apparaat"
+            },
+            "filter": "driver_id=magichome|magichome_addressable&capabilities=not_addressable"
+          },
           {
             "name": "effect",
             "type": "dropdown",
@@ -487,168 +673,345 @@
               "en": "Speed (0 - 100)",
               "nl": "Snelheid (0 - 100)"
             }
-          },
-          {
-            "name": "device",
-            "type": "device",
-            "placeholder": {
-              "en": "Select Magic Home Controller",
-              "nl": "Selecteer Magic Home Controller"
-            },
-            "filter": "driver_id=magichome&capabilities=light_temperature"
-          }
-        ]
-      },
-      {
-        "id": "addressableEffect",
-        "title": {
-          "en": "Select Effect (RBM)",
-          "nl": "Selecteer effect (RBM)"
-        },
-        "titleFormatted": {
-          "en": "Set Effect to [[effect]] with speed [[speed]]",
-          "nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
-        },
-        "hint": {
-          "en": "This is the same as RBM in the Magic Home app"
-        },
-        "args": [
-          {
-            "name": "effect",
-            "type": "number",
-            "min": 1,
-            "max": 100,
-            "step": 1,
-            "placeholder": {
-              "en": "Effect Number (1 - 100)",
-              "nl": "Effect nummer (1 - 100)"
-            }
-          },
-          {
-            "name": "speed",
-            "type": "number",
-            "min": 0,
-            "max": 100,
-            "step": 1,
-            "placeholder": {
-              "en": "Speed (0 - 100)",
-              "nl": "Snelheid (0 - 100)"
-            }
-          },
-          {
-            "name": "device",
-            "type": "device",
-            "placeholder": {
-              "en": "Select Magic Home Controller",
-              "nl": "Selecteer Magic Home Controller"
-            },
-            "filter": "driver_id=magichome&capabilities=addressable"
-          }
-        ]
-      },
-      {
-        "id": "customeffect",
-        "title": {
-          "en": "Create a custom effect",
-          "nl": "Maak een eigen effect"
-        },
-        "titleFormatted": {
-          "en": "Create a custom effect with colors [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], transition [[transition]] and speed [[speed]]",
-          "nl": "Maak een eigen effect met kleuren [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], overgang [[transition]] en snelheid [[speed]]"
-        },
-        "args": [
-          {
-            "type": "dropdown",
-            "name": "colors",
-            "values": [
-              {
-                "id": "2",
-                "label": {
-                  "en": "Use first 2 colors",
-                  "nl": "Gebruik eerste 2 kleuren"
-                }
-              },
-              {
-                "id": "3",
-                "label": {
-                  "en": "Use first 3 colors",
-                  "nl": "Gebruik eerste 3 kleuren"
-                }
-              },
-              {
-                "id": "4",
-                "label": {
-                  "en": "Use all 4 colors",
-                  "nl": "Gebruik alle 4 kleuren"
-                }
-              }
-            ]
-          },
-          {
-            "name": "color1",
-            "type": "color"
-          },
-          {
-            "name": "color2",
-            "type": "color"
-          },
-          {
-            "name": "color3",
-            "type": "color"
-          },
-          {
-            "name": "color4",
-            "type": "color"
-          },
-          {
-            "type": "dropdown",
-            "name": "transition",
-            "values": [
-              {
-                "id": "fade",
-                "label": {
-                  "en": "Fade",
-                  "nl": "Fade"
-                }
-              },
-              {
-                "id": "jump",
-                "label": {
-                  "en": "Jump",
-                  "nl": "Verspringen"
-                }
-              },
-              {
-                "id": "strobe",
-                "label": {
-                  "en": "Strobe",
-                  "nl": "Flitsen"
-                }
-              }
-            ]
-          },
-          {
-            "name": "speed",
-            "type": "number",
-            "min": 0,
-            "max": 100,
-            "step": 1,
-            "placeholder": {
-              "en": "Speed (0 - 100)",
-              "nl": "Snelheid (0 - 100)"
-            }
-          },
-          {
-            "name": "device",
-            "type": "device",
-            "placeholder": {
-              "en": "Select Magic Home Controller",
-              "nl": "Selecteer Magic Home Controller"
-            },
-            "filter": "driver_id=magichome&capabilities=n_addressable"
           }
         ]
       }
     ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Magic Home LED Controller",
+        "nl": "Magic Home LED controller"
+      },
+      "images": {
+        "small": "drivers/magichome/assets/images/small.jpg",
+        "large": "drivers/magichome/assets/images/large.jpg",
+        "xlarge": "drivers/magichome/assets/images/xlarge.jpg"
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "light_temperature",
+        "light_hue",
+        "dim",
+        "light_saturation",
+        "light_mode",
+        "cold_white",
+        "custom_Control",
+        "not_addressable"
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_magichome"
+          }
+        },
+        {
+          "id": "add_magichome",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "address",
+          "type": "text",
+          "label": {
+            "en": "Address",
+            "nl": "Address"
+          },
+          "value": ""
+        },
+        {
+          "id": "model",
+          "type": "dropdown",
+          "label": {
+            "en": "Model",
+            "nl": "Model"
+          },
+          "values": [
+            {
+              "id": "AK001-ZJ100",
+              "label": {
+                "en": "AK001-ZJ100"
+              }
+            },
+            {
+              "id": "AK001-ZJ200",
+              "label": {
+                "en": "AK001-ZJ200"
+              }
+            },
+            {
+              "id": "AK001-ZJ200-2",
+              "label": {
+                "en": "AK001-ZJ200-2"
+              }
+            },
+            {
+              "id": "AK001-ZJ210",
+              "label": {
+                "en": "AK001-ZJ210"
+              }
+            },
+            {
+              "id": "AK001-ZJ2101",
+              "label": {
+                "en": "AK001-ZJ2101"
+              }
+            },
+            {
+              "id": "AK001-ZJ2104",
+              "label": {
+                "en": "AK001-ZJ2104"
+              }
+            },
+            {
+              "id": "AK001-ZJ2145",
+              "label": {
+                "en": "AK001-ZJ2145"
+              }
+            },
+            {
+              "id": "AK001-ZJ2146",
+              "label": {
+                "en": "AK001-ZJ2146"
+              }
+            },
+            {
+              "id": "AK001-ZJ2147",
+              "label": {
+                "en": "AK001-ZJ2147"
+              }
+            },
+            {
+              "id": "AK001-ZJ2148",
+              "label": {
+                "en": "AK001-ZJ2148"
+              }
+            },
+            {
+              "id": "HF-LPB100",
+              "label": {
+                "en": "HF-LPB100"
+              }
+            },
+            {
+              "id": "HF-LPB100-ZJ002",
+              "label": {
+                "en": "HF-LPB100-ZJ002"
+              }
+            },
+            {
+              "id": "HF-LPB100-ZJ200",
+              "label": {
+                "en": "HF-LPB100-ZJ200"
+              }
+            },
+            {
+              "id": "other",
+              "label": {
+                "en": "other"
+              }
+            }
+          ],
+          "value": ""
+        },
+        {
+          "id": "RGB_W",
+          "type": "checkbox",
+          "label": {
+            "en": "RGB+W (mixed)",
+            "nl": "RGB+W (mixed)"
+          },
+          "value": false
+        }
+      ],
+      "id": "magichome"
+    },
+    {
+      "name": {
+        "en": "Magic Home LED Adressable Controller"
+      },
+      "images": {
+        "small": "drivers/magichome/assets/images/small.jpg",
+        "large": "drivers/magichome/assets/images/large.jpg",
+        "xlarge": "drivers/magichome/assets/images/xlarge.jpg"
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "light_hue",
+        "dim",
+        "light_saturation",
+        "addressable"
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_magichome"
+          }
+        },
+        {
+          "id": "add_magichome",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "address",
+          "type": "text",
+          "label": {
+            "en": "Address",
+            "nl": "Address"
+          },
+          "value": ""
+        },
+        {
+          "id": "model",
+          "type": "dropdown",
+          "label": {
+            "en": "Model",
+            "nl": "Model"
+          },
+          "values": [
+            {
+              "id": "AK001-ZJ100",
+              "label": {
+                "en": "AK001-ZJ100"
+              }
+            },
+            {
+              "id": "AK001-ZJ200",
+              "label": {
+                "en": "AK001-ZJ200"
+              }
+            },
+            {
+              "id": "AK001-ZJ200-2",
+              "label": {
+                "en": "AK001-ZJ200-2"
+              }
+            },
+            {
+              "id": "AK001-ZJ210",
+              "label": {
+                "en": "AK001-ZJ210"
+              }
+            },
+            {
+              "id": "AK001-ZJ2101",
+              "label": {
+                "en": "AK001-ZJ2101"
+              }
+            },
+            {
+              "id": "AK001-ZJ2104",
+              "label": {
+                "en": "AK001-ZJ2104"
+              }
+            },
+            {
+              "id": "AK001-ZJ2145",
+              "label": {
+                "en": "AK001-ZJ2145"
+              }
+            },
+            {
+              "id": "AK001-ZJ2146",
+              "label": {
+                "en": "AK001-ZJ2146"
+              }
+            },
+            {
+              "id": "AK001-ZJ2147",
+              "label": {
+                "en": "AK001-ZJ2147"
+              }
+            },
+            {
+              "id": "AK001-ZJ2148",
+              "label": {
+                "en": "AK001-ZJ2148"
+              }
+            },
+            {
+              "id": "HF-LPB100",
+              "label": {
+                "en": "HF-LPB100"
+              }
+            },
+            {
+              "id": "HF-LPB100-ZJ002",
+              "label": {
+                "en": "HF-LPB100-ZJ002"
+              }
+            },
+            {
+              "id": "HF-LPB100-ZJ200",
+              "label": {
+                "en": "HF-LPB100-ZJ200"
+              }
+            },
+            {
+              "id": "other",
+              "label": {
+                "en": "other"
+              }
+            }
+          ],
+          "value": ""
+        },
+        {
+          "id": "RGB_W",
+          "type": "checkbox",
+          "label": {
+            "en": "RGB+W (mixed)",
+            "nl": "RGB+W (mixed)"
+          },
+          "value": false
+        }
+      ],
+      "id": "magichome_addressable"
+    }
+  ],
+  "capabilities": {
+    "addressable": {
+      "type": "boolean",
+      "title": {
+        "en": "Addressable controller"
+      },
+      "getable": false,
+      "setable": false
+    },
+    "cold_white": {
+      "type": "boolean",
+      "title": {
+        "en": "Cold White controller"
+      },
+      "getable": false,
+      "setable": false
+    },
+    "custom_Control": {
+      "type": "boolean",
+      "title": {
+        "en": "custom_Control"
+      },
+      "getable": false,
+      "setable": false,
+      "uicomponent": null
+    },
+    "not_addressable": {
+      "type": "boolean",
+      "title": {
+        "en": "Not Addressable controller"
+      },
+      "getable": false,
+      "setable": false
+    }
   }
 }
