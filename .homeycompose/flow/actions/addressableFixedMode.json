@@ -44,16 +44,14 @@
     {
       "name": "foregroundColor",
       "label": {
-        "en": "Use all 4 colors",
-        "nl": "Gebruik alle 4 kleuren"
+        "en": "Color"
       },
       "type": "color"
     },
     {
       "name": "backgroundColor",
       "label": {
-        "en": "Use all 4 colors",
-        "nl": "Gebruik alle 4 kleuren"
+        "en": "Color"
       },
       "type": "color"
     }
