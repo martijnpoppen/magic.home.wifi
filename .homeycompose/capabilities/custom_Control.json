@@ -1,0 +1,9 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "custom_Control"
+  },
+  "getable": false,
+  "setable": false,
+  "uicomponent": null
+}

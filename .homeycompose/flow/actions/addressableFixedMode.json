@@ -1,0 +1,61 @@
+{
+  "id": "addressableFixedMode",
+  "title": {
+    "en": "Set Fixed mode"
+  },
+  "titleFormatted": {
+    "en": "Set Foreground color to [[foregroundColor]] and background color to [[backgroundColor]] use Effect [[effect]] with speed [[speed]]"
+  },
+  "hint": {
+    "en": "This is the same as Fixed mode in the Magic Home app"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "placeholder": {
+        "en": "Select device",
+        "nl": "Selecteer apparaat"
+      },
+      "filter": "driver_id=magichome|magichome_addressable&capabilities=addressable"
+    },
+    {
+      "name": "effect",
+      "type": "number",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "placeholder": {
+        "en": "Effect Number (1 - 10)",
+        "nl": "Effect nummer (1 - 10)"
+      }
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "placeholder": {
+        "en": "Speed (0 - 100)",
+        "nl": "Snelheid (0 - 100)"
+      }
+    },
+    {
+      "name": "foregroundColor",
+      "label": {
+        "en": "Use all 4 colors",
+        "nl": "Gebruik alle 4 kleuren"
+      },
+      "type": "color"
+    },
+    {
+      "name": "backgroundColor",
+      "label": {
+        "en": "Use all 4 colors",
+        "nl": "Gebruik alle 4 kleuren"
+      },
+      "type": "color"
+    }
+  ]
+}

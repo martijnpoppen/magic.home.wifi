@@ -1,0 +1,146 @@
+{
+  "name": {
+    "en": "Magic Home LED Adressable Controller"
+  },
+  "images": {
+    "small": "drivers/magichome/assets/images/small.jpg",
+    "large": "drivers/magichome/assets/images/large.jpg",
+    "xlarge": "drivers/magichome/assets/images/xlarge.jpg"
+  },
+  "class": "light",
+  "capabilities": [
+    "onoff",
+    "light_hue",
+    "dim",
+    "light_saturation",
+    "addressable"
+  ],
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_magichome"
+      }
+    },
+    {
+      "id": "add_magichome",
+      "template": "add_devices"
+    }
+  ],
+  "settings": [
+    {
+      "id": "address",
+      "type": "text",
+      "label": {
+        "en": "Address",
+        "nl": "Address"
+      },
+      "value": ""
+    },
+    {
+      "id": "model",
+      "type": "dropdown",
+      "label": {
+        "en": "Model",
+        "nl": "Model"
+      },
+      "values": [
+        {
+          "id": "AK001-ZJ100",
+          "label": {
+            "en": "AK001-ZJ100"
+          }
+        },
+        {
+          "id": "AK001-ZJ200",
+          "label": {
+            "en": "AK001-ZJ200"
+          }
+        },
+        {
+          "id": "AK001-ZJ200-2",
+          "label": {
+            "en": "AK001-ZJ200-2"
+          }
+        },
+        {
+          "id": "AK001-ZJ210",
+          "label": {
+            "en": "AK001-ZJ210"
+          }
+        },
+        {
+          "id": "AK001-ZJ2101",
+          "label": {
+            "en": "AK001-ZJ2101"
+          }
+        },
+        {
+          "id": "AK001-ZJ2104",
+          "label": {
+            "en": "AK001-ZJ2104"
+          }
+        },
+        {
+          "id": "AK001-ZJ2145",
+          "label": {
+            "en": "AK001-ZJ2145"
+          }
+        },
+        {
+          "id": "AK001-ZJ2146",
+          "label": {
+            "en": "AK001-ZJ2146"
+          }
+        },
+        {
+          "id": "AK001-ZJ2147",
+          "label": {
+            "en": "AK001-ZJ2147"
+          }
+        },
+        {
+          "id": "AK001-ZJ2148",
+          "label": {
+            "en": "AK001-ZJ2148"
+          }
+        },
+        {
+          "id": "HF-LPB100",
+          "label": {
+            "en": "HF-LPB100"
+          }
+        },
+        {
+          "id": "HF-LPB100-ZJ002",
+          "label": {
+            "en": "HF-LPB100-ZJ002"
+          }
+        },
+        {
+          "id": "HF-LPB100-ZJ200",
+          "label": {
+            "en": "HF-LPB100-ZJ200"
+          }
+        },
+        {
+          "id": "other",
+          "label": {
+            "en": "other"
+          }
+        }
+      ],
+      "value": ""
+    },
+    {
+      "id": "RGB_W",
+      "type": "checkbox",
+      "label": {
+        "en": "RGB+W (mixed)",
+        "nl": "RGB+W (mixed)"
+      },
+      "value": false
+    }
+  ]
+}

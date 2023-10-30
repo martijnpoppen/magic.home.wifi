@@ -1,0 +1,47 @@
+{
+  "id": "addressableEffect",
+  "title": {
+    "en": "Select Effect (RBM)",
+    "nl": "Selecteer effect (RBM)"
+  },
+  "titleFormatted": {
+    "en": "Set Effect to [[effect]] with speed [[speed]]",
+    "nl": "Stel effect in op [[effect]] met snelheid [[speed]]"
+  },
+  "hint": {
+    "en": "This is the same as RBM in the Magic Home app"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "placeholder": {
+        "en": "Select device",
+        "nl": "Selecteer apparaat"
+      },
+      "filter": "driver_id=magichome|magichome_addressable&capabilities=addressable"
+    },
+    {
+      "name": "effect",
+      "type": "number",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "placeholder": {
+        "en": "Effect Number (1 - 100)",
+        "nl": "Effect nummer (1 - 100)"
+      }
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "placeholder": {
+        "en": "Speed (0 - 100)",
+        "nl": "Snelheid (0 - 100)"
+      }
+    }
+  ]
+}

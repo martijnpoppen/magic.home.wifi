@@ -1,0 +1,103 @@
+{
+  "id": "customeffect",
+  "title": {
+    "en": "Create a custom effect",
+    "nl": "Maak een eigen effect"
+  },
+  "titleFormatted": {
+    "en": "Create a custom effect with colors [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], transition [[transition]] and speed [[speed]]",
+    "nl": "Maak een eigen effect met kleuren [[colors]], [[color1]], [[color2]], [[color3]] and [[color4]], overgang [[transition]] en snelheid [[speed]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "placeholder": {
+        "en": "Select device",
+        "nl": "Selecteer apparaat"
+      },
+      "filter": "driver_id=magichome|magichome_addressable&capabilities=not_addressable"
+    },
+    {
+      "type": "dropdown",
+      "name": "colors",
+      "values": [
+        {
+          "id": "2",
+          "label": {
+            "en": "Use first 2 colors",
+            "nl": "Gebruik eerste 2 kleuren"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "en": "Use first 3 colors",
+            "nl": "Gebruik eerste 3 kleuren"
+          }
+        },
+        {
+          "id": "4",
+          "label": {
+            "en": "Use all 4 colors",
+            "nl": "Gebruik alle 4 kleuren"
+          }
+        }
+      ]
+    },
+    {
+      "name": "color1",
+      "type": "color"
+    },
+    {
+      "name": "color2",
+      "type": "color"
+    },
+    {
+      "name": "color3",
+      "type": "color"
+    },
+    {
+      "name": "color4",
+      "type": "color"
+    },
+    {
+      "type": "dropdown",
+      "name": "transition",
+      "values": [
+        {
+          "id": "fade",
+          "label": {
+            "en": "Fade",
+            "nl": "Fade"
+          }
+        },
+        {
+          "id": "jump",
+          "label": {
+            "en": "Jump",
+            "nl": "Verspringen"
+          }
+        },
+        {
+          "id": "strobe",
+          "label": {
+            "en": "Strobe",
+            "nl": "Flitsen"
+          }
+        }
+      ]
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "placeholder": {
+        "en": "Speed (0 - 100)",
+        "nl": "Snelheid (0 - 100)"
+      }
+    }
+  ]
+}

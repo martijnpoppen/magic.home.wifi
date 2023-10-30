@@ -1,0 +1,35 @@
+{
+  "id": "colorAndWhite",
+  "title": {
+    "en": "Set color and white level",
+    "nl": "Stel kleur en wit niveau in"
+  },
+  "titleFormatted": {
+    "en": "Set color to [[color]] and white level to [[white]]",
+    "nl": "Stel kleur in op [[color]] en wit niveau in op [[white]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "placeholder": {
+        "en": "Select device",
+        "nl": "Selecteer apparaat"
+      },
+      "filter": "driver_id=magichome|magichome_addressable&capabilities=light_temperature"
+    },
+    {
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "name": "white",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "%",
+      "labelDecimals": 0
+    }
+  ]
+}
