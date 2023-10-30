@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "magic.home.wifi",
-  "version": "3.6.1",
+  "version": "3.6.2",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#000000",
@@ -241,16 +241,14 @@
           {
             "name": "foregroundColor",
             "label": {
-              "en": "Use all 4 colors",
-              "nl": "Gebruik alle 4 kleuren"
+              "en": "Color"
             },
             "type": "color"
           },
           {
             "name": "backgroundColor",
             "label": {
-              "en": "Use all 4 colors",
-              "nl": "Gebruik alle 4 kleuren"
+              "en": "Color"
             },
             "type": "color"
           }
