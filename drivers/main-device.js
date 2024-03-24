@@ -1,11 +1,11 @@
 'use strict';
 
 const Homey = require('homey');
-const { sleep } = require('../../lib/helpers');
+const { sleep } = require('../lib/helpers');
 const tinycolor = require("tinycolor2");
-const { Control, ControlAddressable, Discovery } = require('../../lib/magic-home');
+const { Control, ControlAddressable, Discovery } = require('../lib/magic-home');
 const discovery = new Discovery();
-const { typeCapabilityMap } = require('../../constants');
+const { typeCapabilityMap } = require('../constants');
 
 const devices = {};
 let runningDiscovery = false;

@@ -1,9 +1,9 @@
 'use strict';
 
 const Homey = require('homey');
-const { Discovery } = require('../../lib/magic-home');
+const { Discovery } = require('../lib/magic-home');
 const discovery = new Discovery();
-const { typeCapabilityMap } = require('../../constants');
+const { typeCapabilityMap } = require('../constants');
 
 class mainDriver extends Homey.Driver {
     async onPairListDevices() {
