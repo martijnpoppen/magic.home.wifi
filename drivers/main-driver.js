@@ -32,6 +32,18 @@ class mainDriver extends Homey.Driver {
                         capabilities: typeCapabilityMap[result[i].model]
                     });
                 }
+
+                devices.push({
+                    name: 'Manual (set IP in settings)',
+                    data: {
+                        id: Date.now()
+                    },
+                    settings: {
+                        address: '0.0.0.0',
+                        model: 'other'
+                    },
+                    capabilities: typeCapabilityMap['other']
+                });
             })
             .catch((err) => {
                 this.homey.app.log(`[Driver] - Discovery err =>`, err);
