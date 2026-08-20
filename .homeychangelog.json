@@ -175,5 +175,14 @@
   },
   "3.6.4": {
     "en": "NEW: add manual option to pairing"
+  },
+  "3.6.5": {
+    "en": "FIX: setWarmWhite error"
+  },
+  "3.6.6": {
+    "en": "FIX: setWarmWhite error"
+  },
+  "3.6.7": {
+    "en": " FIX: setWarmWhite error"
   }
 }

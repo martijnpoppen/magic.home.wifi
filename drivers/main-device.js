@@ -87,7 +87,12 @@ class mainDevice extends Homey.Device {
         await this.setColor(hue_value, saturation_value);
         
         if(this.hasCapability('light_temperature') && this.getSetting('RGB_W') === false) {
-          await devices[id].light.setWarmWhite(0);
+            try {
+                await devices[id].light.setWarmWhite(0).catch(e => console.error(e));
+            } catch (error) {
+                console.error(error);
+            }
+         
         }
       }, 500);
     }
@@ -112,7 +117,12 @@ class mainDevice extends Homey.Device {
 
         this.homey.app.log(`[Device] - ${this.getName()} - light_temperature`, value, level);
         
-        await devices[id].light.setWarmWhite(level);
+        try {
+            await devices[id].light.setWarmWhite(level).catch(e => console.log(e));
+        } catch (error) {
+            console.error(error);
+        }
+        
 
         if((this.hasCapability('light_hue') || this.hasCapability('light_saturation')) && this.getSetting('RGB_W') === false) {
           this.setColor(0, 0, 0);
