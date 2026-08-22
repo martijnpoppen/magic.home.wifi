@@ -24,11 +24,7 @@ class mainDevice extends Homey.Device {
     devices[id] = {};
     devices[id].data = this.getData();
     
-    if(this.hasCapability('addressable')) {
-        devices[id].light = new ControlAddressable(this.getSetting('address'), this.options);
-    } else {
-        devices[id].light = new Control(this.getSetting('address'), this.options);
-    }
+    devices[id].light = this.createControl(this.getSetting('address'), 'onInit');
 
     console.log('control', devices[id].light);
     this.retreivePollValues(id, true);
@@ -53,7 +49,7 @@ class mainDevice extends Homey.Device {
         await this.setOptions();
     }
 
-    devices[id].light = new Control(newSettings.address, this.options);
+    devices[id].light = this.createControl(newSettings.address, 'onSettings');
   }
 
   async getDevices() {
@@ -196,6 +192,12 @@ class mainDevice extends Homey.Device {
   }
 
   // HELPER FUNCTIONS
+  createControl(address, source) {
+    const ControllerClass = this.hasCapability('addressable') ? ControlAddressable : Control;
+    this.homey.app.log(`[Device] - ${this.getName()} - createControl`, source, ControllerClass.name);
+    return new ControllerClass(address, this.options);
+  }
+
   async pollDevice(id, source = '') {
     this.homey.app.log(`[Device] - ${this.getName()} - pollDevice`, source);
     clearInterval(this.pollingInterval);
@@ -286,7 +288,7 @@ class mainDevice extends Homey.Device {
     this.pingInterval = setInterval(async () => {
       try {
         this.log('Device is not reachable, pinging every 63 seconds to see if it comes online again.');
-        devices[id].light = new Control(this.getSetting('address'), this.options);
+        devices[id].light = this.createControl(this.getSetting('address'), 'pingInterval');
         let result = await devices[id].light.queryState();
         console.log('result', result);
         this.setAvailable();
@@ -297,17 +299,22 @@ class mainDevice extends Homey.Device {
       } catch (error) {
         if (runningDiscovery == false) {
           runningDiscovery = true;
-          const discover = await discovery.scan(3000);
-          const magichomes = await this.homey.drivers.getDriver('magichome').getDevices();
-          for (let i in discover) {
-            Object.keys(magichomes).forEach(() => {
-              if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
-                this.setSettings({address: discover[i].address, model: discover[i].model});
-                devices[this.getData().id].light = new Control(discover[i].address, this.options);
-              }
-            });
+          try {
+            const discover = await discovery.scan(3000);
+            const magichomes = await this.homey.drivers.getDriver('magichome').getDevices();
+            for (let i in discover) {
+              Object.keys(magichomes).forEach(() => {
+                if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
+                  this.setSettings({address: discover[i].address, model: discover[i].model});
+                  devices[this.getData().id].light = this.createControl(discover[i].address, 'rediscovery');
+                }
+              });
+            }
+          } catch (discoveryError) {
+            this.log(discoveryError);
+          } finally {
+            setTimeout(() => { runningDiscovery = false }, 10000);
           }
-          setTimeout(() => { runningDiscovery = true }, 10000);
         }
       }
     }, 63000);

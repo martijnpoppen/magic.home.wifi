@@ -184,5 +184,8 @@
   },
   "3.6.7": {
     "en": " FIX: setWarmWhite error"
+  },
+  "3.6.8": {
+    "en": "FIX: addressable controllers lost color and brightness control after a reconnect | FIX: rediscovery no longer blocks itself after the first run"
   }
 }
