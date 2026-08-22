@@ -299,17 +299,22 @@ class mainDevice extends Homey.Device {
       } catch (error) {
         if (runningDiscovery == false) {
           runningDiscovery = true;
-          const discover = await discovery.scan(3000);
-          const magichomes = await this.homey.drivers.getDriver('magichome').getDevices();
-          for (let i in discover) {
-            Object.keys(magichomes).forEach(() => {
-              if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
-                this.setSettings({address: discover[i].address, model: discover[i].model});
-                devices[this.getData().id].light = this.createControl(discover[i].address, 'rediscovery');
-              }
-            });
+          try {
+            const discover = await discovery.scan(3000);
+            const magichomes = await this.homey.drivers.getDriver('magichome').getDevices();
+            for (let i in discover) {
+              Object.keys(magichomes).forEach(() => {
+                if (this.getData().id == discover[i].id && this.getSetting('address') != discover[i].address ) {
+                  this.setSettings({address: discover[i].address, model: discover[i].model});
+                  devices[this.getData().id].light = this.createControl(discover[i].address, 'rediscovery');
+                }
+              });
+            }
+          } catch (discoveryError) {
+            this.log(discoveryError);
+          } finally {
+            setTimeout(() => { runningDiscovery = false }, 10000);
           }
-          setTimeout(() => { runningDiscovery = false }, 10000);
         }
       }
     }, 63000);
